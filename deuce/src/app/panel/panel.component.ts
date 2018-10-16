@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
-import { SwitchComponent } from '../switch/switch.component';
+import { SwitchComponent } from './switch/switch.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from '../app.component';
 
