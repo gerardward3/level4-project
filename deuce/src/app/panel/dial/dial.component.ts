@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dial.component.css']
 })
 export class DialComponent implements OnInit {
-
+  default = window.location.href + 'src/assets/img/sergeybe-Rotary-Dialer.png';
   constructor() { }
 
   ngOnInit() {

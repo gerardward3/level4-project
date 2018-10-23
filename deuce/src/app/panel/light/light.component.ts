@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./light.component.css']
 })
 export class LightComponent implements OnInit {
-
+  off = window.location.href + 'src/assets/img/DomeLight_offWhite.png';
   constructor() { }
 
   ngOnInit() {
