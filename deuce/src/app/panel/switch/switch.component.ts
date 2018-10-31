@@ -10,14 +10,10 @@ export class SwitchComponent implements OnInit {
   on = window.location.href + 'src/assets/img/switch-on.png';
 
   change(event: any) {
+    console.log(event);
     const imgElement = <HTMLImageElement>document.getElementById('switch');
-    if (imgElement.src === this.off) {
-      imgElement.src = this.on;
-      console.log('ON');
-    } else {
-      imgElement.src = this.off;
-      console.log('OFF');
-    }
+    console.log(imgElement);
+    imgElement.src = (imgElement.src === this.off) ? (this.on) : (this.off);
 
   }
   constructor() { }
