@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-switch',
@@ -6,19 +6,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./switch.component.css']
 })
 export class SwitchComponent implements OnInit {
-  off = window.location.href + 'src/assets/img/switch-off.png';
-  on = window.location.href + 'src/assets/img/switch-on.png';
+  @Input() switchID: string;
+  imgPath: string;
+  state: boolean;
 
-  change(event: any) {
-    console.log(event);
-    const imgElement = <HTMLImageElement>document.getElementById('switch');
-    console.log(imgElement);
-    imgElement.src = (imgElement.src === this.off) ? (this.on) : (this.off);
+  constructor() {
 
   }
-  constructor() { }
 
   ngOnInit() {
+    this.imgPath = window.location.href + 'src/assets/img/switch-off.png';
+    this.state = false;
+  }
+
+  change(event: any) {
+    if (this.state === false) {
+      this.state = true;
+      this.imgPath = window.location.href + 'src/assets/img/switch-on.png';
+    } else {
+      this.state = false;
+      this.imgPath = window.location.href + 'src/assets/img/switch-off.png';
+    }
+
+    console.log(this.switchID);
+    console.log(this.state);
   }
 
 }
