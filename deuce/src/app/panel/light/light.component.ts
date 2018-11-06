@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-light',
@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./light.component.css']
 })
 export class LightComponent implements OnInit {
-  off = window.location.href + 'src/assets/img/DomeLight_offWhite.png';
-  constructor() { }
+  @Input() lightID: string;
+  state: boolean;
+  imgPath: string;
 
-  ngOnInit() {
+  constructor() {
+    this.imgPath = window.location.href + 'src/assets/img/DomeLight_offWhite.png';
+    this.state = false;
   }
+
+  ngOnInit() {}
 
 }
