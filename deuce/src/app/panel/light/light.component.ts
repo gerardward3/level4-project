@@ -11,8 +11,12 @@ export class LightComponent implements OnInit {
   imgPath: string;
 
   constructor() {
-    this.imgPath = window.location.href + 'src/assets/img/DomeLight_offWhite.png';
+    this.imgPath = 'assets/img/DomeLight_offWhite.png';
     this.state = false;
+  }
+
+  getLightID() {
+    return this.lightID;
   }
 
   ngOnInit() {}
