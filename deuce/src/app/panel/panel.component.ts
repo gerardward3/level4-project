@@ -19,6 +19,7 @@ import { LightComponent } from './light/light.component';
 
 export class PanelComponent implements OnInit {
   @ViewChildren(LightComponent) lights: QueryList<LightComponent>;
+  memory: Memory;
 
   constructor() {
   }
@@ -29,6 +30,9 @@ export class PanelComponent implements OnInit {
   switchClicked(event: any) {
     const current = this.lights.find(light => light.lightID === event);
 
+    if (event === 'singleShot') {
+      
+    }
     if (current.state === false) {
       current.state = true;
       current.imgPath = 'assets/img/DomeLight_onRed.png';
