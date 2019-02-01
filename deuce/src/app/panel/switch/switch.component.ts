@@ -9,6 +9,7 @@ import { LightComponent } from '../light/light.component';
 export class SwitchComponent implements OnInit {
   @Output() switchClicked = new EventEmitter<any>();
   @Input() switchID: string;
+  @Input() group: string;
   imgPath: string;
   state: boolean;
 

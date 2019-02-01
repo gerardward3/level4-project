@@ -4,6 +4,5 @@ class Word {
 
     constructor() {
         this.decimal = 0;
-        this.binary = (+this.decimal).toString(2);
     }
 }

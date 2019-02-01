@@ -7,10 +7,11 @@ import { PanelComponent } from './panel/panel.component';
 import { SwitchComponent } from './panel/switch/switch.component';
 import { LightComponent } from './panel/light/light.component';
 import { DialComponent } from './panel/dial/dial.component';
+import { ClickSwitchComponent } from './panel/click-switch/click-switch.component';
 
 @NgModule({
   declarations: [
-    AppComponent, PanelComponent, SwitchComponent, LightComponent, DialComponent
+    AppComponent, PanelComponent, SwitchComponent, LightComponent, DialComponent, ClickSwitchComponent
   ],
   imports: [
     BrowserModule, FlexLayoutModule

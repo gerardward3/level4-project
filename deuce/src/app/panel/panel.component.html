@@ -7,7 +7,7 @@
             </div>
 
             <div fxLayout="column" fxLayoutGap="1px" fxLayoutAlign="start center">
-                <app-switch switchID="singleShot"></app-switch>
+                <app-switch switchID="singleShot" group="shot" (switchClicked)="switchClicked($event)"></app-switch>
                 <div>SINGLE</div>
                 <div>SHOT</div>  
             </div>
@@ -391,7 +391,7 @@
         
         <div fxLayout="row" fxLayoutGap="10px">
             <div fxLayout="column" fxLayoutGap="1px" fxLayoutAlign="end center">
-                <app-switch switchID='ID1' (switchClicked)="switchClicked($event)"></app-switch>
+                <app-switch switchID='ID1' group="ID" (switchClicked)="switchClicked($event)"></app-switch>
             </div> 
                     
             <div fxLayout="column" fxLayoutGap="1px" fxLayoutAlign="end center">

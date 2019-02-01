@@ -4,6 +4,7 @@ import { SwitchComponent } from './switch/switch.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from '../app.component';
 import { LightComponent } from './light/light.component';
+import { ngDevModeResetPerfCounters } from '@angular/core/src/render3/ng_dev_mode';
 
 @Component({
   selector: 'app-panel',
@@ -27,11 +28,23 @@ export class PanelComponent implements OnInit {
   ngOnInit() {
   }
 
+  readInstruction() {
+    let total = 0;
+    let counter = 1;
+    for (const light of this.lights.toArray()) {
+      if (light.state === true) {
+        total += counter;
+      }
+      counter *= 2;
+    }
+    return total;
+  }
   switchClicked(event: any) {
     const current = this.lights.find(light => light.lightID === event);
+    console.log(event);
 
     if (event === 'singleShot') {
-      
+      let instruction = this.readInstruction();
     }
     if (current.state === false) {
       current.state = true;

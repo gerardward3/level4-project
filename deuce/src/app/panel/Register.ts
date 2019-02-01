@@ -10,7 +10,6 @@ class Register {
         destination.storage = this.storage;
         for (const word of this.storage) {
             word.decimal = 0;
-            word.binary = '';
         }
     }
 }
