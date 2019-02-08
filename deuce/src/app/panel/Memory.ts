@@ -1,8 +1,17 @@
-class Memory {
+import { Register } from './Register';
+import { TemporaryStore } from './TemporaryStore';
+import { DelayLine } from './DelayLine';
+import { DoubleStore } from './DoubleStore';
+import { QuadStore } from './QuadStore';
+
+export class Memory {
     stores: Array<Register>;
 
     constructor() {
-        this.stores =  [new DelayLine(),        // DL1
+        // this.stores = [new Register(1)];
+
+        this.stores =  [null,
+                        new DelayLine(),        // DL1
                         new DelayLine(),        // DL2
                         new DelayLine(),        // DL3
                         new DelayLine(),        // DL4
@@ -25,4 +34,9 @@ class Memory {
                         new DoubleStore()       // DS21
                     ];
     }
+
+    getStores() {
+        return this.stores;
+    }
+
 }

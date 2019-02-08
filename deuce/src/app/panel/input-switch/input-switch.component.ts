@@ -1,11 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-switch',
-  templateUrl: './switch.component.html',
-  styleUrls: ['./switch.component.css']
+  selector: 'app-input-switch',
+  templateUrl: './input-switch.component.html',
+  styleUrls: ['./input-switch.component.css']
 })
-export class SwitchComponent implements OnInit {
+export class InputSwitchComponent implements OnInit {
   @Output() switchClicked = new EventEmitter<any>();
   @Input() switchID: string;
   imgPath: string;

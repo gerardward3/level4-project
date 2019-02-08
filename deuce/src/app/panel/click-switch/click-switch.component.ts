@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-click-switch',
@@ -7,9 +7,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClickSwitchComponent implements OnInit {
 
-  constructor() { }
+  @Output() switchClicked = new EventEmitter<any>();
+  @Input() switchID: string;
+  imgPath: string;
+  state: boolean;
+
+  constructor() {
+    this.imgPath = 'assets/img/switch-off.png';
+    this.state = false;
+  }
 
   ngOnInit() {
+  }
+
+  change(event: any) {
+
+    this.state = true;
+    this.imgPath = 'assets/img/switch-on.png';
+    this.state = false;
+    this.imgPath = 'assets/img/switch-off.png';
+
+    this.switchClicked.emit(this.switchID);
   }
 
 }
