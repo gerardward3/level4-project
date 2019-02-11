@@ -8,6 +8,7 @@ import { ClickSwitchComponent } from './click-switch/click-switch.component';
 import { InputSwitchComponent } from './input-switch/input-switch.component';
 import { Memory } from './Memory';
 import { OsLightComponent } from './os-light/os-light.component';
+import { clearOverrides } from '@angular/core/src/view';
 
 @Component({
   selector: 'app-panel',
@@ -75,8 +76,8 @@ export class PanelComponent implements OnInit {
       if (destination === 25) {
         this.memory.stores[13].storage[0] += this.memory.stores[source].storage[timing];
       } else if (destination === 28) {
-        let binaryString = this.createBinaryString(this.memory.stores[source].storage[0]).split('').reverse();
-        let lightArray = this.OSLights.toArray();
+        const binaryString = this.createBinaryString(this.memory.stores[source].storage[0]).split('').reverse();
+        const lightArray = this.clearOS();
         for (let i = 0; i < 32; i++) {
           if (binaryString[i] === '1') {
             lightArray[i].state = true;
@@ -103,10 +104,22 @@ export class PanelComponent implements OnInit {
 
   createBinaryString (nMask) {
     // nMask must be between -2147483648 and 2147483647
-    for (var nFlag = 0, nShifted = nMask, sMask = ""; nFlag < 32) {
-      nFlag++, sMask += String(nShifted >>> 31), nShifted <<= 1);
+    let sMask = '';
+    for (let nFlag = 0, nShifted = nMask; nFlag < 32;) {
+      nFlag++;
+      sMask += String(nShifted >>> 31);
+      nShifted <<= 1;
     }
     return sMask;
+  }
+
+  clearOS() {
+    const osArray = this.OSLights.toArray();
+    for (let i = 0; i < 32; i++) {
+      osArray[i].state = false;
+      osArray[i].imgPath = 'assets/img/DomeLight_offWhite.png';
+    }
+    return osArray;
   }
 
   switchClicked(event: any) {
@@ -123,6 +136,8 @@ export class PanelComponent implements OnInit {
       }
       this.lastInstruction = instruction;
       console.log(this.memory.stores);
+    } else if (event === 'clearOps') {
+      this.clearOS();
     } else {
       const current = this.lights.find(light => light.lightID === event);
       if (current.state === false) {

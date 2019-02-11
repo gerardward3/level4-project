@@ -7,9 +7,9 @@
             </div>
 
             <div fxLayout="column" fxLayoutGap="1px" fxLayoutAlign="start center">
-                <app-click-switch switchID="singleShot" (switchClicked)="switchClicked($event)"></app-click-switch>
+                <app-click-switch switchID="singleRead" (switchClicked)="switchClicked($event)"></app-click-switch>
                 <div>SINGLE</div>
-                <div>SHOT</div>  
+                <div>READ</div>  
             </div>
 
             <div fxLayout="column" fxLayoutGap="1px" fxLayoutAlign="start center">
@@ -53,7 +53,7 @@
             </div>-->
 
             <div fxLayout="column" fxLayoutGap="1px" fxLayoutAlign="start center">
-                <app-switch switchID='singleShot'></app-switch>
+                <app-click-switch switchID='singleShot' (switchClicked)="switchClicked($event)"></app-click-switch>
                 <div>SINGLE</div>
                 <div>SHOT</div>
             </div>
@@ -382,7 +382,7 @@
             </div> 
 
             <div fxLayout="column" fxLayoutGap="1px" fxLayoutAlign="start center">
-                <app-switch switchID='clearOps' (switchClicked)="switchClicked($event)"></app-switch>
+                <app-click-switch switchID='clearOps' (switchClicked)="switchClicked($event)"></app-click-switch>
                 <div>CLEAR OPS</div>
                 <app-switch switchID='clearID' (switchClicked)="switchClicked($event)"></app-switch>
                 <div>CLEAR ID</div>
