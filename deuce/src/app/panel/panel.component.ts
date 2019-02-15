@@ -8,7 +8,7 @@ import { ClickSwitchComponent } from './click-switch/click-switch.component';
 import { InputSwitchComponent } from './input-switch/input-switch.component';
 import { Memory } from './Memory';
 import { OsLightComponent } from './os-light/os-light.component';
-import { clearOverrides } from '@angular/core/src/view';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @Component({
   selector: 'app-panel',
@@ -72,23 +72,49 @@ export class PanelComponent implements OnInit {
     if (source === 0) {
       this.readfromID = 1;
       this.lastDestination = destination;
-    } else {
-      if (destination === 25) {
+      return;
+    } else if (source === 23) {
+      this.memory.stores[14].storage[0] = this.memory.stores[destination].storage[0] / 2;
+    } else if (source === 24) {
+      this.memory.stores[14].storage[0] = this.memory.stores[destination].storage[0] * 2;
+    } else if (source === 27) {
+      this.memory.stores[destination].storage[0] = 1;
+    } else if (source === 28) {
+      this.memory.stores[destination].storage[0] = 2 ** 16;
+    } else if (source === 29) {
+      this.memory.stores[destination].storage[0] = 2 ** 31;
+    } else if (source === 30) {
+      this.memory.stores[destination].storage[0] = 0;
+    } else if (source === 31) {
+      this.memory.stores[destination].storage[0] = -1;
+    }
+    
+    if (destination === 25) {
         this.memory.stores[13].storage[0] += this.memory.stores[source].storage[timing];
-      } else if (destination === 28) {
-        const binaryString = this.createBinaryString(this.memory.stores[source].storage[0]).split('').reverse();
-        const lightArray = this.clearOS();
-        for (let i = 0; i < 32; i++) {
-          if (binaryString[i] === '1') {
-            lightArray[i].state = true;
-            lightArray[i].imgPath = 'assets/img/DomeLight_onRed.png';
-          }
-        }
-      } else {
-        this.memory.stores[destination].storage[wait] = this.memory.stores[source].storage[timing];
-      }
+        return;
+    } else if (destination === 26) {
+        this.memory.stores[13].storage[0] -= this.memory.stores[source].storage[timing];
+        return;
+    } else if (destination === 28) {
+      const word = this.memory.stores[source].storage[0];
+      this.displayWord(word);
+      return;
     }
 
+    if (source <= 22 && destination <= 22) {
+      this.memory.stores[destination].storage[wait] = this.memory.stores[source].storage[timing];
+    }
+  }
+
+  displayWord(word) {
+    const binaryString = this.createBinaryString(word).split('').reverse();
+    const lightArray = this.clearOS();
+    for (let i = 0; i < 32; i++) {
+      if (binaryString[i] === '1') {
+        lightArray[i].state = true;
+        lightArray[i].imgPath = 'assets/img/DomeLight_onRed.png';
+      }
+    }
   }
   calculateFormat(instruction) {
     let total = 0;
@@ -131,6 +157,8 @@ export class PanelComponent implements OnInit {
         this.IDtotal = this.calculateFormat(instruction);
         if (this.lastDestination < 22) {
           this.memory.stores[this.lastDestination].storage[0] = this.IDtotal;
+        } else if (this.lastDestination === 28) {
+          this.displayWord(this.IDtotal);
         }
         this.readfromID = 0;
       }

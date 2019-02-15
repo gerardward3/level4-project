@@ -1,8 +1,9 @@
 <div class="panel">
-    <div fxLayout="column" fxLayoutGap="30px">
-        <div fxLayout="row" fxLayoutGap="10px">
+
+    <div fxLayout="column wrap" fxLayoutGap="30px">
+        <div fxLayout="row wrap" fxLayoutGap="10px">
             <div fxLayout="column" fxLayoutGap="1px" fxLayoutAlign="start center">
-                <app-switch switchID="read"></app-switch>
+                <app-click-switch switchID="read"></app-click-switch>
                 <div>READ</div>
             </div>
 
@@ -13,35 +14,35 @@
             </div>
 
             <div fxLayout="column" fxLayoutGap="1px" fxLayoutAlign="start center">
-                <app-switch switchID="punch"></app-switch>
+                <app-click-switch switchID="punch"></app-click-switch>
                 <div>PUNCH</div>
             </div>
 
             <div fxLayout="column" fxLayoutGap="1px" fxLayoutAlign="start center">
-                <app-switch switchID="progDisplay"></app-switch>
+                <app-click-switch switchID="progDisplay"></app-click-switch>
                 <div>PROG.</div>
                 <div>DISPLAY</div>
             </div>
 
             <div fxLayout="column" fxLayoutGap="1px" fxLayoutAlign="start center">
-                <app-switch switchID='til'></app-switch>
+                <app-click-switch switchID='til'></app-click-switch>
                 <div>TIL</div>
             </div>
             
             <div fxLayout="column" fxLayoutGap="1px" fxLayoutAlign="start center">
-                <app-switch switchID='initialInput'></app-switch>
+                <app-click-switch switchID='initialInput'></app-click-switch>
                 <div>INITIAL</div>
                 <div>INPUT</div>
             </div>
 
             <div fxLayout="column" fxLayoutGap="1px" fxLayoutAlign="start center">
-                <app-switch switchID='clearStore'></app-switch>
+                <app-click-switch switchID='clearStore'></app-click-switch>
                 <div>CLEAR</div>
                 <div>STORE</div>
             </div>
 
             <div fxLayout="column" fxLayoutGap="1px" fxLayoutAlign="start center">
-                <app-switch switchID='extTree'></app-switch>
+                <app-click-switch switchID='extTree'></app-click-switch>
                 <div>EXT</div>
                 <div>TREE</div>
             </div>
@@ -64,17 +65,17 @@
             </div>
 
             <div fxLayout="column" fxLayoutGap="1px" fxLayoutAlign="start center">
-                <app-switch switchID='release'></app-switch>
+                <app-click-switch switchID='release'></app-click-switch>
                 <div>RELEASE</div>
             </div>
 
             <div fxLayout="column" fxLayoutGap="1px" fxLayoutAlign="start center">
-                <app-switch switchID='stop'></app-switch>
+                <app-click-switch switchID='stop'></app-click-switch>
                 <div>STOP</div>
             </div>
 
             <div fxLayout="column" fxLayoutGap="1px" fxLayoutAlign="start center">
-                <app-switch switchID='clearAlarum'></app-switch>
+                <app-click-switch switchID='clearAlarum'></app-click-switch>
                 <div>CLEAR</div>
                 <div>ALARUM</div>
             </div>
@@ -87,21 +88,21 @@
                 <app-light lightID='IS1'></app-light>
                 <div>-</div>
                 <div>1</div>
-                <app-switch switchID='IS1'></app-switch>
+                <app-switch switchID='IS1' (switchClicked)="switchClicked($event)"></app-switch>
             </div> 
             
             <div fxLayout="column" fxLayoutGap="1px" fxLayoutAlign="start center">
                 <app-light lightID='IS2'></app-light>
                 <div>NIS</div>
                 <div>2</div>
-                <app-switch switchID='IS2'></app-switch>
+                <app-switch switchID='IS2' (switchClicked)="switchClicked($event)"></app-switch>
             </div>
             
             <div fxLayout="column" fxLayoutGap="1px" fxLayoutAlign="start center">
                 <app-light lightID='IS3'></app-light>
                 <div>-</div>
                 <div>4</div>
-                <app-switch switchID='IS3'></app-switch>
+                <app-switch switchID='IS3' (switchClicked)="switchClicked($event)"></app-switch>
             </div>
 
             <div fxLayoutAlign="center center">***</div>
@@ -111,35 +112,35 @@
                 <app-light lightID='IS4'></app-light>
                 <div>-</div>
                 <div>1</div>
-                <app-switch switchID='IS4'></app-switch>
+                <app-switch switchID='IS4' (switchClicked)="switchClicked($event)"></app-switch>
             </div>  
 
             <div fxLayout="column" fxLayoutGap="1px" fxLayoutAlign="start center">
                 <app-light lightID='IS5'></app-light>
                 <div>-</div>
                 <div>2</div>
-                <app-switch switchID='IS5'></app-switch>
+                <app-switch switchID='IS5' (switchClicked)="switchClicked($event)"></app-switch>
             </div>  
 
             <div fxLayout="column" fxLayoutGap="1px" fxLayoutAlign="start center">
                 <app-light lightID='IS6'></app-light>
                 <div>SOURCE</div>
                 <div>4</div>
-                <app-switch switchID='IS6'></app-switch>
+                <app-switch switchID='IS6' (switchClicked)="switchClicked($event)"></app-switch>
             </div> 
             
             <div fxLayout="column" fxLayoutGap="1px" fxLayoutAlign="start center">
                 <app-light lightID='IS7'></app-light>
                 <div>-</div>
                 <div>8</div>
-                <app-switch switchID='IS7'></app-switch>
+                <app-switch switchID='IS7' (switchClicked)="switchClicked($event)"></app-switch>
             </div>
             
             <div fxLayout="column" fxLayoutGap="1px" fxLayoutAlign="start center">
                 <app-light lightID='IS8'></app-light>
                 <div>-</div>
                 <div>16</div>
-                <app-switch switchID='IS8'></app-switch>
+                <app-switch switchID='IS8' (switchClicked)="switchClicked($event)"></app-switch>
             </div>  
 
             <div fxLayoutAlign="center center">***</div>
@@ -149,35 +150,35 @@
                 <app-light lightID='IS9'></app-light>
                 <div>-</div>
                 <div>1</div>
-                <app-switch switchID='IS9'></app-switch>
+                <app-switch switchID='IS9' (switchClicked)="switchClicked($event)"></app-switch>
             </div>  
     
             <div fxLayout="column" fxLayoutGap="1px" fxLayoutAlign="start center">
                 <app-light lightID='IS10'></app-light>
                 <div>-</div>
                 <div>2</div>
-                <app-switch switchID='IS10'></app-switch>
+                <app-switch switchID='IS10' (switchClicked)="switchClicked($event)"></app-switch>
             </div>  
     
             <div fxLayout="column" fxLayoutGap="1px" fxLayoutAlign="start center">
                 <app-light lightID='IS11'></app-light>
                 <div>DESTINATION</div>
                 <div>4</div>
-                <app-switch switchID='IS11'></app-switch>
+                <app-switch switchID='IS11' (switchClicked)="switchClicked($event)"></app-switch>
             </div> 
                 
             <div fxLayout="column" fxLayoutGap="1px" fxLayoutAlign="start center">
                 <app-light lightID='IS12'></app-light>
                 <div>-</div>
                 <div>8</div>
-                <app-switch switchID='IS12'></app-switch>
+                <app-switch switchID='IS12' (switchClicked)="switchClicked($event)"></app-switch>
             </div>
                 
             <div fxLayout="column" fxLayoutGap="1px" fxLayoutAlign="start center">
                 <app-light lightID='IS13'></app-light>
                 <div>-</div>
                 <div>16</div>
-                <app-switch switchID='IS13'></app-switch>
+                <app-switch switchID='IS13' (switchClicked)="switchClicked($event)"></app-switch>
             </div>  
     
             <div fxLayoutAlign="center center">***</div>
@@ -384,7 +385,7 @@
             <div fxLayout="column" fxLayoutGap="1px" fxLayoutAlign="start center">
                 <app-click-switch switchID='clearOps' (switchClicked)="switchClicked($event)"></app-click-switch>
                 <div>CLEAR OPS</div>
-                <app-switch switchID='clearID' (switchClicked)="switchClicked($event)"></app-switch>
+                <app-click-switch switchID='clearID' (switchClicked)="switchClicked($event)"></app-click-switch>
                 <div>CLEAR ID</div>
             </div> 
         </div> 

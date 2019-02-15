@@ -1,7 +1,15 @@
 .panel {
-     display: block;
+     display: flex;
      padding: 10px;
      border: 1px solid black;
      border-radius: 8px;
-     font-family: 'Courier New', Courier, monospace
+     font-family: 'Courier New', Courier, monospace;
+     flex-direction: row;
+     flex-wrap: wrap;
+     justify-content: flex-start;
+}
+
+.panelRow {
+     display: flex;
+     flex-direction: row;
 }
