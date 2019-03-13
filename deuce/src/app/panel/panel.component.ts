@@ -8,7 +8,6 @@ import { ClickSwitchComponent } from './click-switch/click-switch.component';
 import { InputSwitchComponent } from './input-switch/input-switch.component';
 import { Memory } from './Memory';
 import { OsLightComponent } from './os-light/os-light.component';
-import { FlexLayoutModule } from '@angular/flex-layout';
 
 @Component({
   selector: 'app-panel',
@@ -32,6 +31,7 @@ export class PanelComponent implements OnInit {
   lastDestination: number;
   lastInstruction: Array<number>;
   IDtotal: number;
+  dlIndex: number;
 
   constructor() {
     this.memory = new Memory();
@@ -42,9 +42,21 @@ export class PanelComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.dlIndex = 0;
+    setInterval(() => {
+      this.dlIndex = (this.dlIndex + 1) % 32;
+    }, 500);
+    this.memory.stores[1].storage[0] = 2181045682;
+    this.memory.stores[1].storage[1] = 2214607586;
+    this.memory.stores[1].storage[2] = 2248154498;
+    this.memory.stores[1].storage[3] = 2281716450;
+    this.memory.stores[1].storage[4] = 2315263362;
+    this.memory.stores[1].storage[5] = 2348825314;
+    //this.memory.stores[1].storage[6] =
+
   }
 
-  readInstruction() {
+  readInstructionfromPanel() {
     const instruction = [];
     for (const id of this.inputSwitches.toArray()) {
       if (id.state === true) {
@@ -56,13 +68,28 @@ export class PanelComponent implements OnInit {
     return instruction;
   }
 
+  readInstruction(decimal) {
+    const binArray = [];
+    let k = 0;
+    for (let i = 31; i >= 0; i--) {
+      k = decimal >> i; 
+      if (k & 1) { 
+          binArray.unshift(1);
+      } else {
+          binArray.unshift(0);
+      }
+    }
+    return binArray;
+  }
+
   processInstruction(instruction) {
+    console.log(instruction);
     const nis = this.calculateFormat(instruction.slice(1, 3 + 1));
     const source = this.calculateFormat(instruction.slice(4, 8 + 1));
     const destination = this.calculateFormat(instruction.slice(9, 13 + 1));
     const characteristic = this.calculateFormat(instruction.slice(14, 15 + 1));
     const wait = this.calculateFormat(instruction.slice(16, 20 + 1));
-    const timing = this.calculateFormat(instruction.slice(25, 29 + 1));
+    let timing = this.calculateFormat(instruction.slice(25, 29 + 1));
 
     let go = 0;
     if (instruction[31] === 1) {
@@ -70,6 +97,7 @@ export class PanelComponent implements OnInit {
     }
 
     if (source === 0) {
+      console.log('hello');
       this.readfromID = 1;
       this.lastDestination = destination;
       return;
@@ -88,21 +116,35 @@ export class PanelComponent implements OnInit {
     } else if (source === 31) {
       this.memory.stores[destination].storage[0] = -1;
     }
-    
+
     if (destination === 25) {
-        this.memory.stores[13].storage[0] += this.memory.stores[source].storage[timing];
-        return;
+        this.memory.stores[13].storage[0] += this.memory.stores[source].storage[wait];
     } else if (destination === 26) {
-        this.memory.stores[13].storage[0] -= this.memory.stores[source].storage[timing];
-        return;
+        this.memory.stores[13].storage[0] -= this.memory.stores[source].storage[wait];
+    } else if (destination === 27) {
+        if (this.memory.stores[source].storage[0] < 0) {
+          timing += 1;
+        }
     } else if (destination === 28) {
+      if (this.memory.stores[source].storage[0] !== 0) {
+        timing += 1;
+      }
+    } else if (destination === 29) {
       const word = this.memory.stores[source].storage[0];
       this.displayWord(word);
-      return;
     }
 
     if (source <= 22 && destination <= 22) {
-      this.memory.stores[destination].storage[wait] = this.memory.stores[source].storage[timing];
+      this.memory.stores[destination].storage[wait] = this.memory.stores[source].storage[wait];
+    }
+
+    if (go) {
+      console.log('NIS: ' + nis);
+      console.log('TIMING: ' + timing);
+      setTimeout(() => {
+        const newInstruction = this.readInstruction(this.memory.stores[nis].storage[timing]);
+        this.processInstruction(newInstruction);
+      }, 500);
     }
   }
 
@@ -128,6 +170,8 @@ export class PanelComponent implements OnInit {
     return total;
   }
 
+  // Creates binary string of decimal number.
+  // Function adapted for TypeScript from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators
   createBinaryString (nMask) {
     // nMask must be between -2147483648 and 2147483647
     let sMask = '';
@@ -150,14 +194,14 @@ export class PanelComponent implements OnInit {
 
   switchClicked(event: any) {
     if (event === 'singleShot') {
-      const instruction = this.readInstruction();
+      const instruction = this.readInstructionfromPanel();
       if (this.readfromID === 0) {
         this.processInstruction(instruction);
       } else {
         this.IDtotal = this.calculateFormat(instruction);
         if (this.lastDestination < 22) {
           this.memory.stores[this.lastDestination].storage[0] = this.IDtotal;
-        } else if (this.lastDestination === 28) {
+        } else if (this.lastDestination === 29) {
           this.displayWord(this.IDtotal);
         }
         this.readfromID = 0;
@@ -166,6 +210,9 @@ export class PanelComponent implements OnInit {
       console.log(this.memory.stores);
     } else if (event === 'clearOps') {
       this.clearOS();
+    } else if (event === 'initialInput') {
+      const instruction = this.readInstruction(this.memory.stores[1].storage[0]);
+      this.processInstruction(instruction);
     } else {
       const current = this.lights.find(light => light.lightID === event);
       if (current.state === false) {

@@ -30,7 +30,7 @@
             </div>
             
             <div fxLayout="column" fxLayoutGap="1px" fxLayoutAlign="start center">
-                <app-click-switch switchID='initialInput'></app-click-switch>
+                <app-click-switch switchID='initialInput' (switchClicked)="switchClicked($event)"></app-click-switch>
                 <div>INITIAL</div>
                 <div>INPUT</div>
             </div>
