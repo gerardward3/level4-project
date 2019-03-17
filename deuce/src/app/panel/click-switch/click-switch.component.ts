@@ -17,7 +17,7 @@ export class ClickSwitchComponent implements OnInit {
   state: boolean;
 
   constructor() {
-    this.imgPath = '/assets/img/switch-on.png';
+    this.imgPath = 'assets/img/switch-on.png';
     this.state = true;
   }
 
@@ -26,11 +26,11 @@ export class ClickSwitchComponent implements OnInit {
 
 
   change(event: any) {
-    this.imgPath = '/assets/img/switch-off.png';
+    this.imgPath = 'assets/img/switch-off.png';
     this.state = false;
     setTimeout(() => {
       this.state = true;
-      this.imgPath = '/assets/img/switch-on.png';
+      this.imgPath = 'assets/img/switch-on.png';
     }, 500);
     this.switchClicked.emit(this.switchID);
   }
