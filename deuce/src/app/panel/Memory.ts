@@ -8,8 +8,7 @@ export class Memory {
     stores: Array<Register>;
 
     constructor() {
-        // this.stores = [new Register(1)];
-
+        // Sets up DEUCE memory.
         this.stores =  [null,
                         new DelayLine(),        // DL1
                         new DelayLine(),        // DL2

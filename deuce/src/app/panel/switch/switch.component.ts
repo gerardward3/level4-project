@@ -5,6 +5,10 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   templateUrl: './switch.component.html',
   styleUrls: ['./switch.component.css']
 })
+
+// Switch graphic downloaded from https://openclipart.org/detail/210484/misc-wall-switch
+// with permission under Creative Commons Zero 1.0 Public Domain License.
+
 export class SwitchComponent implements OnInit {
   @Output() switchClicked = new EventEmitter<any>();
   @Input() switchID: string;

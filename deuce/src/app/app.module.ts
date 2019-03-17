@@ -13,7 +13,8 @@ import { OsLightComponent } from './panel/os-light/os-light.component';
 
 @NgModule({
   declarations: [
-    AppComponent, PanelComponent, SwitchComponent, LightComponent, DialComponent, ClickSwitchComponent, InputSwitchComponent, OsLightComponent
+    AppComponent, PanelComponent, SwitchComponent,
+    LightComponent, DialComponent, ClickSwitchComponent, InputSwitchComponent, OsLightComponent
   ],
   imports: [
     BrowserModule, FlexLayoutModule

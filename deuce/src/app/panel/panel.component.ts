@@ -33,6 +33,7 @@ export class PanelComponent implements OnInit {
   IDtotal: number;
   dlIndex: number;
 
+  // Sets up memory and flags for checking instructions.
   constructor() {
     this.memory = new Memory();
     this.readfromID = 0;
@@ -43,9 +44,14 @@ export class PanelComponent implements OnInit {
 
   ngOnInit() {
     this.dlIndex = 0;
+
+    // Sets timer for counting minor cycles.
     setInterval(() => {
       this.dlIndex = (this.dlIndex + 1) % 32;
     }, 500);
+
+    // Sets up pre-loaded program in card reader.
+    // When Initial Input is clicked, Output Staticiser lights will light up from left to right.
     this.memory.stores[1].storage[0] = 2181045682;
     this.memory.stores[1].storage[1] = 2214607586;
     this.memory.stores[1].storage[2] = 2248154498;
@@ -56,6 +62,7 @@ export class PanelComponent implements OnInit {
 
   }
 
+  // Reads input from Input Dynamiciser and returns 32-bit instruction
   readInstructionfromPanel() {
     const instruction = [];
     for (const id of this.inputSwitches.toArray()) {
@@ -68,6 +75,7 @@ export class PanelComponent implements OnInit {
     return instruction;
   }
 
+  // Converts number held in memory to binary array
   readInstruction(decimal) {
     const binArray = [];
     let k = 0;
@@ -82,8 +90,8 @@ export class PanelComponent implements OnInit {
     return binArray;
   }
 
+  // Breaks down instruction to individual parts and processes instruction.
   processInstruction(instruction) {
-    console.log(instruction);
     const nis = this.calculateFormat(instruction.slice(1, 3 + 1));
     const source = this.calculateFormat(instruction.slice(4, 8 + 1));
     const destination = this.calculateFormat(instruction.slice(9, 13 + 1));
@@ -96,51 +104,78 @@ export class PanelComponent implements OnInit {
       go = 1;
     }
 
+    // Checks Source value of instruction for special cases.
+    // Source 0 - read value from Input Dynamiciser
     if (source === 0) {
-      console.log('hello');
       this.readfromID = 1;
       this.lastDestination = destination;
       return;
+
+    // Source 23 - Divide contents of TS14 by 2 and place in Destination address.
     } else if (source === 23) {
-      this.memory.stores[14].storage[0] = this.memory.stores[destination].storage[0] / 2;
+      this.memory.stores[destination].storage[0] = this.memory.stores[14].storage[0] / 2;
+
+    // Source 24 - Multiply contents of TS14 by 2 and place in Destination address.
     } else if (source === 24) {
-      this.memory.stores[14].storage[0] = this.memory.stores[destination].storage[0] * 2;
+      this.memory.stores[destination].storage[0] = this.memory.stores[14].storage[0] * 2;
+
+    // Source 27 - Place 1 in Destination address.
     } else if (source === 27) {
       this.memory.stores[destination].storage[0] = 1;
+
+    // Source 28 - Place 2^16 in Destination address.
     } else if (source === 28) {
       this.memory.stores[destination].storage[0] = 2 ** 16;
+
+    // Source 29 - Place 2^31 in Destination address.
     } else if (source === 29) {
       this.memory.stores[destination].storage[0] = 2 ** 31;
+
+    // Source 30 - Place 0 in Destination address.
     } else if (source === 30) {
       this.memory.stores[destination].storage[0] = 0;
+
+    // Source 31 - Place -1 in Destination address.
     } else if (source === 31) {
       this.memory.stores[destination].storage[0] = -1;
     }
 
+    // Checks Destination value of instruction for special cases
+    // Destination 25 - Adds contents of Source address to TS13.
     if (destination === 25) {
         this.memory.stores[13].storage[0] += this.memory.stores[source].storage[wait];
+
+    // Destination 26 - Subtracts contents of Source address from TS13.
     } else if (destination === 26) {
         this.memory.stores[13].storage[0] -= this.memory.stores[source].storage[wait];
+
+    // Destination 27 - Checks if contents of Source address is negative or positive.
+    // Goes to one of two adjacent memory addresses in memory depending on outcome.
     } else if (destination === 27) {
         if (this.memory.stores[source].storage[0] < 0) {
           timing += 1;
         }
+
+    // Destination 28 - Checks if contents of Source address is zero or non-zero.
+    // Goes to one of two adjacent memory addresses in memory depending on outcome.
     } else if (destination === 28) {
       if (this.memory.stores[source].storage[0] !== 0) {
         timing += 1;
       }
+
+    // Destination 29 - Displays output to Output Staticiser lights.
     } else if (destination === 29) {
       const word = this.memory.stores[source].storage[0];
       this.displayWord(word);
     }
 
+    // Checks if source and destination are valid memory locations and performs transfer.
     if (source <= 22 && destination <= 22) {
       this.memory.stores[destination].storage[wait] = this.memory.stores[source].storage[wait];
     }
 
+    // If Go bit is 1, this proceeds to execute next instruction immediately.
     if (go) {
-      console.log('NIS: ' + nis);
-      console.log('TIMING: ' + timing);
       setTimeout(() => {
         const newInstruction = this.readInstruction(this.memory.stores[nis].storage[timing]);
         this.processInstruction(newInstruction);
@@ -148,6 +183,7 @@ export class PanelComponent implements OnInit {
     }
   }
 
+  // Displays a word on Output Staticiser lights.
   displayWord(word) {
     const binaryString = this.createBinaryString(word).split('').reverse();
     const lightArray = this.clearOS();
@@ -158,6 +194,8 @@ export class PanelComponent implements OnInit {
       }
     }
   }
+
+  // Calculates the decimal value of an instruction.
   calculateFormat(instruction) {
     let total = 0;
     let counter = 1;
@@ -183,6 +221,7 @@ export class PanelComponent implements OnInit {
     return sMask;
   }
 
+  // Clears the Output Staticiser lights to 0.
   clearOS() {
     const osArray = this.OSLights.toArray();
     for (let i = 0; i < 32; i++) {
@@ -192,7 +231,10 @@ export class PanelComponent implements OnInit {
     return osArray;
   }
 
+  // Event that listens for when a switch was clicked.
   switchClicked(event: any) {
+    // When Single Shot switch clicked, word from Input Dynamiciser is read in.
+    // Function checks if data being read in is instruction or data value.
     if (event === 'singleShot') {
       const instruction = this.readInstructionfromPanel();
       if (this.readfromID === 0) {
@@ -207,12 +249,18 @@ export class PanelComponent implements OnInit {
         this.readfromID = 0;
       }
       this.lastInstruction = instruction;
-      console.log(this.memory.stores);
+
+    // Checks if Clear Ops switch was clicked.
     } else if (event === 'clearOps') {
       this.clearOS();
+
+    // Checks if Initial Input switch was clicked. If it was,
+    // pre-loaded program is executed.
     } else if (event === 'initialInput') {
       const instruction = this.readInstruction(this.memory.stores[1].storage[0]);
       this.processInstruction(instruction);
+
+    // Otherwise, switch corresponds to a light, so corresponding light is turned on.
     } else {
       const current = this.lights.find(light => light.lightID === event);
       if (current.state === false) {
