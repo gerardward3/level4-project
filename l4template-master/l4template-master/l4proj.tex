@@ -20,15 +20,12 @@
 %==============================================================================
 %% ABSTRACT
 \begin{abstract}
-    Every abstract follows a similar pattern. Motivate; set aims; describe work; explain results.
-    \vskip 0.5em
     The English Electric DEUCE was one of the first commercially available computers in the world,
-    but in modern times, there are limited resources available to learn more about it. The aim of
-    this project was to create an emulator of the DEUCE, to provide people with a way of learning
-    how one of the world's earliest computers functions. Written as a web application, this emulator
-    allows users to operate the DEUCE as if they were using an original, but through a modern software
-    solution. In the end, the project captured most of the functionality of the original DEUCE.
-    
+	but in modern times, there are limited resources available to learn more about it. The aim of
+	this project was to create an emulator of the DEUCE, to provide people with a way of learning
+	how one of the world's earliest computers functions. Written as a web application, this emulator
+	allows users to operate the DEUCE as if they were using an original, but through a modern software
+	solution. In the end, the project captured most of the functionality of the original DEUCE.
 \end{abstract}
 
 %==============================================================================
@@ -42,8 +39,8 @@
 % Please note that you are under no obligation to sign 
 % this declaration, but doing so would help future students.
 %
-%\def\consentname {My Name} % your full name
-%\def\consentdate {20 March 2018} % the date you agree
+\def\consentname {Gerard Dominic Ward} % your full name
+\def\consentdate {20 March 2018} % the date you agree
 %
 \educationalconsent
 
@@ -80,7 +77,6 @@
 
 % reset page numbering. Don't remove this!
 \pagenumbering{arabic} 
-
 This chapter states the motivations and aims behind this project, as well as summarising the
 contents of the rest of this dissertation. The DEUCE emulator built for this project allows
 users to operate a web application version of the English Electric DEUCE. The significance of creating
@@ -88,17 +84,32 @@ this emulator will be explained in this chapter.
 
 \section{Motivation}
 
-In 1951, the English Electric company began building models of the Digital Electronic Universal Computing Engine, also known as the DEUCE. This computer was based on Alan Turing's Pilot ACE computer but improved on the ACE in several ways, namely by improving upon the speed and reliability of the ACE, adding further storage and adding a large program and subroutine library. Due to these improvements, the DEUCE was considered a commercial success: in total, approximately 33 DEUCEs were created. These were mainly installed at governmental departments, aircraft design facilities and universities. Therefore, as an early, commercially successful stored program computer, the DEUCE has a hugely important part in the history of Computing Science.
+In 1951, the English Electric company decided to begin building models of the Digital Electronic Universal Computing Engine, also known as the DEUCE \citep{Vowels05}. This computer was based on Alan Turing's Pilot ACE computer but improved on the ACE in several ways, namely by improving upon the speed and reliability of the ACE, adding further storage and adding a large program and subroutine library. Due to these improvements, the DEUCE was considered a commercial success: in total, approximately 33 DEUCEs were created, with the first being installed in 1955. \citep{Vowels05}. These were mainly installed at governmental departments, aircraft design facilities and universities. Therefore, as an early, commercially successful stored program computer, the DEUCE has a hugely important part in the history of Computing Science.
 
-Among the universities that installed a DEUCE was the University of Glasgow. In 1957, the university established Scotland's first computing lab and chose Dennis Gilles as its initial director. As director, Gilles was responsible for advising the university to order its first computer and so in 1958, the DEUCE became the first electric computer at a Scottish university. In addition to holding an important place in the history of Computing, the DEUCE also holds an important place in recent Scottish academic history.
+Among the universities that installed a DEUCE was the University of Glasgow \citep{Glasgow60}. In 1957, the university established Scotland's first computing lab and chose Dr. Dennis Gilles as its initial Director of Computing, as pictured in Figure \ref{fig:gilles}. As director, Gilles was responsible for advising the university to order its first computer and so in 1958, the DEUCE became the first electric computer at a Scottish university. In addition to holding an important place in the history of Computing Science, the DEUCE is also significant in recent Scottish academic history.
 
-However, in spite of the DEUCE's importance as an early electric computer, there remain limited resources available on the DEUCE. With all of the machines having stopped being in use since approximately the late 1960s, there are no DEUCEs left to use in the world today. At the University of Glasgow, the only remaining piece of the DEUCE installed there is one of the mercury delay lines. For this reason, it would be beneficial if there were a modern way of allowing people to operate a DEUCE in order to learn more about an important part of Computing Science history, and also to learn how to operate an example of an early computer.
+\begin{figure}[b]
+	\centering
+	\includegraphics[width=0.7\linewidth]{images/gilles}
+	\caption{Dr. Dennis Gilles, initial Director of Computing at the University of Glasgow, standing next to the University of Glasgow's DEUCE, c. 1957 \citep{DelayLine19}.}
+	\label{fig:gilles}
+\end{figure}
 
-Therefore, a solution to this problem is to create a modern emulator of the DEUCE. In doing so, this would allow for the DEUCE's legacy to continue.
+However, in spite of the DEUCE's importance as an early electric computer, there remain limited resources available on the DEUCE. With all of the machines having stopped being in use since approximately the late 1960s, there are no DEUCEs left to use in the world today, shown in. At the University of Glasgow, the only remaining piece of the DEUCE installed there is one of the mercury delay lines, as shown in Figure \ref{fig:amp}. For this reason, it would be beneficial if there were a modern way of allowing people to operate a DEUCE in order to learn more about an important part of Computing Science history, and also to learn how to operate an example of an early computer.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{images/delay-line-amplifier}
+	\caption{Mercury delay line amplifier from original Glasgow DEUCE. This piece of equipment sent electrical pulses to encode data inside the mercury delay lines of the DEUCE \citep{DelayLine19}.}
+	\label{fig:amp}
+\end{figure}
+
+
+In modern times, it would be impractical to recreate the DEUCE physically. With the DEUCE drawing around 9kw of power and having a clock speed of 1MHz \citep{Glasgow60}, it is a highly inefficient system. Furthermore, its use of mercury delay lines would be dangerous given the potential health problems associated with exposure to mercury \citep{Gao17}. Therefore, an alternative way of recreating the DEUCE in modern times would be through emulation. According to \citet{Nair05}, emulation is "the process of implementing the interface and functionality of one system or subsystem on a system or subsystem having a different interface and functionality." The creation of a DEUCE emulator would be a modern, efficient and convenient way for the DEUCE to be remade and would solve the problem of the DEUCE being widely unavailable to people.
 
 \section{Aims}
 
-For this project, the key aim is to create a functioning emulator of the DEUCE. The emulator should replicate the behaviour of the original DEUCE, using the same input, processing and output methods. When completed, the emulator should allow the user to run programs on it, as if it were the original DEUCE computer. It should also replicate the user interface of the DEUCE. After the emulator has been created, it should be evaluated against the DEUCE to discover if it can run programs written for the original computer.
+For this project, the key aim is to create a functioning emulator of the DEUCE. The emulator should replicate the behaviour of the original DEUCE, using the same input, processing and output methods. When completed, the emulator should allow the user to run programs on it, as if it were the original DEUCE computer. It should also replicate the user interface of the DEUCE. After the emulator has been created, it should be evaluated against the original DEUCE to discover if it can run programs written for the original computer. It is hoped that the emulator can be used as an educational tool to help people learn more about how early computers, such as the DEUCE, functioned.
 
 \section{Summary}
 
@@ -116,15 +127,17 @@ The purpose of this chapter was to introduce they key motivations behind the pro
 %==================================================================================================================================
 \chapter{Background}
 This chapter discusses background research carried out on the DEUCE and on the creation of emulators.
-\begin{figure}[h]
+
+\section{Learning how the DEUCE functions}
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.5\linewidth]{images/deuce-arch.jpg} 
-	\caption{Architecture diagram of the DEUCE.}
+	\caption{Architecture diagram of the DEUCE \citep{Vowels05}. This image shows the memory structure of the delay lines, registers and special memory locations used to carry out special functions in the DEUCE.}
 	\label{fig:arch}
 \end{figure}
 
-\section{Learning how the DEUCE functions}
-Firstly, it was important to learn how the DEUCE functioned as a computer. The architecture of the DEUCE is shown in Figure 2.1. As an early computer, it is extremely different to modern computers in several ways. For example, for input, the instructions read in by the DEUCE were essentially a series of move instructions from a memory source to a memory destination. Each instruction was a 32-bit binary word. Instructions could be read in either via a card reader, which read in lines of instructions on special cards, or through the Input Staticiser, a special row of switches which allowed for single word input. Several special source and memory locations specified special functions, such as arithmetic functions, discrimination functions etc., and through using these special memory locations, the computer could be coded to run programs.
+Firstly, it was important to learn how the DEUCE functioned as a computer. The architecture of the DEUCE is shown in Figure \ref{fig:arch}. As an early computer, it is extremely different to modern computers in several ways. For example, for input, the instructions read in by the DEUCE were essentially a series of move instructions from a memory source to a memory destination. Each instruction was a 32-bit binary word \citep{Weth10}. Instructions could be read in either via a card reader, which read in lines of instructions on special cards, or through the Input Staticiser, a special row of switches which allowed for single word input. Several special source and memory locations specified special functions, such as arithmetic functions, discrimination functions etc., and through using these special memory locations, the computer could be coded to run programs.
+
 
 The DEUCE stored instructions in delay lines and registers. It consisted of:
 \begin{itemize}
@@ -139,16 +152,31 @@ The complex mechanics of the DEUCE meant that the architecture of the computer h
 
 \section{Comparison of early computer emulators}
 To gain a better understanding of how early computers worked, several emulators of other early computers were used. This gave good insight into how similar early computers functioned and explore the design choices made by the creators of these emulators.
-\subsection{Pilot ACE Emulator} 
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.7\linewidth]{images/ace-emulator}
-	\caption{Pilot ACE Emulator from http://www.pilotaceonline.com/index.html}
-	\label{fig:ace}
-\end{figure}
-The Pilot ACE was one of the earliest stored-program computers and was based on a design by Alan Turing, running its first program in 1950. The DEUCE was a commercial version of this machine, so there are several similarities between the two computers. For example, both machines can read input from a Hollerith card reader or from the input dynamiciser keys on the front panel of the machine. The main memory of the Pilot ACE consisted of 11 32-bit delay lines, 5 32-bit temporary stores and 2 64-bit double stores.
 
-This emulator is a very faithful recreation of the original Pilot ACE. The panel is a replica of the original panel of the Pilot ACE. To recreate some of the physical actions of operating tnhe Pilot ACE, such as inserting a card into the card reader, the author has instead provided a toolbar which allows some of these features to be carried out.
+\subsection{Pilot ACE Emulator} 
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[t]{0.45\textwidth}
+		\includegraphics[width=\textwidth]{images/ace-emulator}
+		\caption{Pilot ACE Emulator from pilotaceonline.com \citep{Ace12}, accessed using Wayback Machine \citep{Wayback19}. This image shows the emulator console featuring switches and lights used for input and output respectively. It also shows the toolbar used for entering CRD "punch card" files and a monitor for displaying output.}
+		\label{fig:ace-emu}
+	\end{subfigure}
+	\quad
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+	%(or a blank line to force the subfigure onto a new line)
+	\begin{subfigure}[t]{0.45\textwidth}
+		\includegraphics[width=\textwidth]{images/real-ace}
+		\caption{Image of console from real Pilot ACE, taken at Science Museum, London. Emulator shown in Figure \ref{fig:ace-emu} strongly resembles real front panel of the machine.}
+		\label{fig:real-ace}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+	%(or a blank line to force the subfigure onto a new line)    
+	\caption{Images of Pilot ACE emulator by David Green and the original Pilot ACE machine at the Science Museum, London.}
+	\label{fig:ace-comps}
+\end{figure}
+As described by \citet{VowelsAce05}, the Pilot ACE was one of the earliest stored-program computers and was based on a design by Alan Turing, running its first program in 1950. The DEUCE was a commercial version of this machine, so there are several similarities between the two computers. For example, both machines can read input from a Hollerith card reader or from the input dynamiciser keys on the front panel of the machine. The main memory of the Pilot ACE consisted of 11 32-bit delay lines, 5 32-bit temporary stores and 2 64-bit double stores.
+
+This emulator, as seen in Figure \ref{fig:ace-emu} is a very faithful recreation of the original Pilot ACE, as seen in Figure \ref{fig:real-ace}. The panel is a replica of the original panel of the Pilot ACE. To recreate some of the physical actions of operating the Pilot ACE, such as inserting a card into the card reader, the author has instead provided a toolbar which allows some of these features to be carried out.
 
 Therefore, the Pilot ACE emulator is a very useful model on which to base a DEUCE emulator. Given the similarities in how the Pilot ACE and DEUCE computers functioned, this emulator provided some very good ideas about how to implement a DEUCE emulator. As the DEUCE was a commercial version of this machine, many of the features present in this emulator can be reused in a DEUCE emulator, such as the input dynamiciser and single shot key. While the GUI is an accurate representation of the original Pilot ACE interface, several of the features of the original Pilot ACE appear unknown to the author. For example, the purposes of the keys surrounded by question marks, such as ? E ?, are unknown to the creator. Overall, it would be worthwhile to base several features of a DEUCE emulator on this emulator.
 
@@ -157,26 +185,25 @@ Therefore, the Pilot ACE emulator is a very useful model on which to base a DEUC
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\linewidth]{images/edsac-emu}
-	\caption{EDSAC Simulator from https://www.dcs.warwick.ac.uk/~edsac/}
+	\caption{EDSAC Simulator from the University of Warwick \citep{Warwick16}. Image shows the toolbar, program text and simulator display.}
 	\label{fig:edsac}
 \end{figure}
 
-Like the Pilot ACE and the DEUCE, the EDSAC was another early stored program computer. Running its first program in 1949, it used 32 mercury delay lines for main memory, each storing 32 words of 18 bits. For input, it used a paper-tape reader operating at 50 characters per second and output was achieved through a Creed teleprinter. Control can be achieved through five buttons: clear, reset, start, stop and single E.P. Single E.P functions similarly to the single shot key in the DEUCE, by allowing a program to be executed one instruction at a time. 
+Like the Pilot ACE and the DEUCE, the EDSAC was another early stored program computer. Its functionality is described by \citet{Edsac11}. Running its first program in 1949, it used 32 mercury delay lines for main memory, each storing 32 words of 18 bits. For input, it used a paper-tape reader operating at 50 characters per second and output was achieved through a Creed teleprinter. Control can be achieved through five buttons: clear, reset, start, stop and single E.P. Single E.P functions similarly to the single shot key in the DEUCE, by allowing a program to be executed one instruction at a time. 
 
-The EDSAC emulator has three main components: the toolbar, the program text and the simulator display. 
-The toolbar allows control over the features of the EDSAC. For example, it allows files to be read in and allows the user to switch between Initial Orders 1 and Initial Orders 2. The program text provides the series of instructions to be executed for a program that is being read in. The simulator display shows the output from the programs being executed and allows control over programs through the five main control buttons.
+As shown in Figure \ref{fig:edsac}, the EDSAC emulator has three main components: the toolbar, the program text and the simulator display. The toolbar allows control over the features of the EDSAC. For example, it allows files to be read in and allows the user to switch between Initial Orders 1 and Initial Orders 2. The program text provides the series of instructions to be executed for a program that is being read in. The simulator display shows the output from the programs being executed and allows control over programs through the five main control buttons.
 
 Overall, while there are bigger differences between the DEUCE and the EDSAC than the DEUCE and the Pilot ACE, this is still a useful emulator on which to model some features of the DEUCE. Both computers share common features such as using a reader to take input from files and using delay lines for main memory. One useful feature of this emulator compared to the Pilot ACE emulator is its output display. Rather than outputting to a new file, it is useful to have a console that displays output instead. This would be a good feature to have in a DEUCE emulator, particularly one running as a web app. Therefore, while several features would need to change, there are some features of this emulator that would be useful to base a DEUCE emulator on.
 
-\subsection{Manchester Baby Emulator}
+\subsection{Manchester Baby Simulator}
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.5\linewidth]{images/baby-emu}
-	\caption{Manchester Baby Emulator from https://www.davidsharp.com/baby/}
+	\caption{Manchester Baby Simulator by David Sharp \citep{Baby08}. Image shows the photo-realistic interface of the emulator and its forms of input, as well as its monitor for output.}
 	\label{fig:baby}
 \end{figure}
 
-The Manchester Baby was another early computer. It was the first electronic stored program computer in the world, running its first program in 1948 before the Pilot ACE and the EDSAC. Its memory is made up of 32 store lines, each containing 32 bits. In one store line, bits 0-4 represent the operand line, i.e. the number of the line that the instruction will operate on when executed, and bits 13-15 represent the function number, which is essentially the instruction opcode.
+The Manchester Baby was another early computer, which has its functionality described by \citet{BabyGuide08}. It was the first electronic stored program computer in the world, running its first program in 1948 before the Pilot ACE and the EDSAC. Its memory is made up of 32 store lines, each containing 32 bits. In one store line, bits 0-4 represent the operand line, i.e. the number of the line that the instruction will operate on when executed, and bits 13-15 represent the function number, which is essentially the instruction opcode.
 
 The control of the Manchester Baby contains two values: the control instruction (CI) and the present instruction (PI). The CI contains the line number of the instruction executed previously. The PI contains the line representing the instruction currently being executed. Input can also be controlled using the switches on the front panel. Output can be displayed through the monitor above the control panel.
 
@@ -191,13 +218,13 @@ In carrying out background research, this allowed for the discovery of how the D
 This chapter examines the process of analysing how to create the DEUCE emulator. The scope of the project is discussed, as well as the requirements gathered to create the emulator.
 
 \section{Platform selection}
-The original project plan was to create a DEUCE emulator for mobile platforms, but after considering several factors concerning the feasibility of creating a mobile emulator, it was agreed instead to make a web application. Firstly, it would have been extremely difficult to recreate a faithful DEUCE emulator on mobile devices given the limitations of mobile device screen sizes. For example, the DEUCE's Input Dynamisciser was a row of 32 switches, so trying to create a good interface for this on a mobile device would have been beyond the scope of this project.
+The original plan for this project was to create a DEUCE emulator for mobile platforms, but after considering several factors concerning the feasibility of creating a mobile emulator, it was agreed instead to make a web application. Firstly, it would have been extremely difficult to recreate a faithful DEUCE emulator on mobile devices given the limitations of mobile device screen sizes. For example, the DEUCE's Input Dynamisciser was a row of 32 switches, so trying to create a good interface for this on a mobile device would have been beyond the scope of this project.
 
 Furthermore, creating this emulator as a web application is a modern solution to making the DEUCE accessible to a wide number of people. By hosting the emulator on a website, users can access it through their web browser on any device, including desktop or mobile. Therefore, the decision to change the scope of the project early on was important in order to recreate the DEUCE as faithfully as possible.
 
 \section{Requirements Gathering}
 Requirements elicitation was an important early step in the Analysis stage of the project. This helped to define what could feasibly be completed within the scope and time frame of the project. Initial general requirements were firstly created. They are as follows:
-\begin{itemize}
+\begin{enumerate}
 	\item Replicate physical features of the DEUCE, such as delay lines, card reader etc., within a modern software solution.
 	\item Have a graphical user interface resembling that of the original DEUCE
 	\item Allow users to interact with input switches, most likely through a pointing device.
@@ -205,32 +232,32 @@ Requirements elicitation was an important early step in the Analysis stage of th
 	\item Execute programs in the same way as the original DEUCE.
 	\item Display output through representations of lights on console.
 	\item Be intuitive enough for those familiar with the DEUCE to be able to operate it.	
-\end{itemize}
-	
+\end{enumerate}
+
 While these requirements sufficed as early, broad requirements, it was necessary to then refine them and categorise them into functional and non-functional requirements.
 
 \subsection{Functional Requirements}
-The functional requirements of the project define what features DEUCE emulator should have. These were categorised into Must Have, Should Have, Could Have and Won't Have (this time) requirements, using the MoSCoW method. They are as follows:
+The functional requirements of the project define what features DEUCE emulator should have. These were categorised into Must Have, Should Have, Could Have and Want to Have requirements, using the MoSCoW method \citep{Moscow14}. They are as follows:
 \\
- 
+
 \textbf{\textit{Must Have:}}
-\begin{itemize}
+\begin{enumerate}
 	\item A row of 32 Input Dynamiciser switches, to allow for single instruction and data input.
 	\item A row of 32 Input Dynamiciser lights, to display the status of the Input Dynamiciser.
 	\item A row of 32 Output Staticiser lights, to display output from instructions.
 	\item A memory storage system comprised of 12 Delay Lines, 4 Temporary Stores, 3 Double Stores and 2 Quadruple Stores. These must store the following:
-	\begin{itemize}
+	\begin{enumerate}
 		\item Delay Lines must store 32 32-bit words each.
 		\item Temporary Stores must store 1 32-bit word each.
 		\item Double Stores must store 2 32-bit words each.
 		\item Quadruple Stores must store 4 32-bit words each.
-	\end{itemize}
+	\end{enumerate}
 	\item A clock to simulate delay line acoustic pulses, which are needed to access delay line memory.
 	\item An instruction decoder that calculates the NIS, Source, Destination, Wait, Timing and Go values of an instruction.
 	\item A single shot switch to execute a single instruction.
 	\item A graphical user interface resembling that of the original DEUCE.
 	\item A series of special Source and Destination addresses, as follows:
-	\begin{itemize}
+	\begin{enumerate}
 		\item Source 0 - Take user input from Input Dynamiciser.
 		\item Source 23 - Divide contents of TS14 by 2 and place in selected destination address.
 		\item Source 24 - Multiply contents of TS14 by 2 and place in selected destination address.
@@ -247,11 +274,11 @@ The functional requirements of the project define what features DEUCE emulator s
 		\item Destination 28 - Discriminate between zero and non-zero numbers.
 		\item Destination 29 - Display output on Output Staticiser.
 		
-	\end{itemize}
-\end{itemize}
+	\end{enumerate}
+\end{enumerate}
 
 \textbf{\textit{Should Have:}}
-\begin{itemize}
+\begin{enumerate}
 	\item A single shot dial to execute a given number of single shots in succession.
 	\item A card reader to take external input from a pre-written DEUCE program.
 	\item A card punch to write programs to external files.
@@ -261,31 +288,31 @@ The functional requirements of the project define what features DEUCE emulator s
 	\item A Read and Single Read switch to read in punch cards.
 	\item A Punch switch to write to output files.
 	\item An Initial Input switch to read a new program.
-	\\
-	\\
 	
-\end{itemize}
+\end{enumerate}
 
 \textbf{\textit{Could Have:}}
-\begin{itemize}
+\begin{enumerate}
 	\item A user manual to instruct users on how to operate the DEUCE.
 	\item A more convenient way of viewing the current memory contents of the DEUCE. While not an original feature of the DEUCE, this could help new users to view the state of their programs.
 	
-\end{itemize}
+\end{enumerate}
 
-\textbf{\textit{Won't Have (this time):}}
-\begin{itemize}
+
+\textbf{\textit{Want to have:}}
+\begin{enumerate}
 	\item A monitor to display output. This requirement would be extremely challenging to implement within the scope of this project and so will not be included this time.
 	\item A subroutine library. The original DEUCE came with a large library of subroutines to be used by DEUCE programmers but this would be too much to implement within the time frame of the project.
-\end{itemize}
+\end{enumerate}
 \subsection{Non-functional Requirements}
 The non-functional requirements of the project describe how the emulator should work, rather than describing what the emulator will do. 
-\begin{itemize}
+\begin{enumerate}
 	\item The emulator should be easy enough to understand how to operate for those familiar with the DEUCE.
 	\item It should be intuitive so that new users can learn how to operate a DEUCE.
 	\item It should be designed mainly for desktop computer users but also be available on other devices such as tablets and mobile phones.
 	\item It should be maintainable so that development can be continued in future.
-\end{itemize}
+	\item It should be able to be used as a tool to aid learning about early computers.
+\end{enumerate}
 
 \section{Summary}
 This chapter gives an overview of the steps taken during the Analysis stage of the development of the project. The decision to change the project scope from being a mobile development project to a web development project was highly important, as it showed the steps taken to calculate the feasibility of the project on web compared to mobile. This stage was also key in the development process as it involved the creation of formal requirements for the project. Following these requirements would prove highly important for the rest of the project.
@@ -299,15 +326,15 @@ Recreating the system architecture of the DEUCE entirely within software was an 
 \subsection{Memory Storage}
 The creation of the memory storage of the DEUCE emulator presented several design questions at an early stage. Firstly, the DEUCE had two levels of main memory: delay lines and registers. Access to each of these levels was different as the delay line used clock pulses to access data, whereas for Temporary Stores, access was instant. Delay lines could also hold a vast amount of words compared to registers. Furthermore, within the registers themselves, there were varying sizes between Temporary Stores, Double Stores and Quadruple Stores. Therefore, a solution was needed to represent these different levels of memory entirely within software.
 
-An initial design solution to this problem was to create a dictionary to hold each type of storage. With keys for each type of storage, this would allow a way of accessing each level of memory entirely within software. For every key, the value pair would be an array holding the number of words each type of storage could hold. For example, keys "DL1" to "DL12" would represent the 12 Delay Lines of the DEUCE and hold an array of 32 words, while "TS13" being Temporary Store 13 could hold 1 word.
+An initial design solution to this problem was to use a dictionary data structure to hold each type of storage. With keys for each type of storage, this would allow a way of accessing each level of memory entirely within software. For every key, the value pair would be an array holding the number of words each type of storage could hold. For example, keys "DL1" to "DL12" would represent the 12 Delay Lines of the DEUCE and hold an array of 32 words, while "TS13" being Temporary Store 13 could hold 1 word.
 
 Another proposed solution to this was to simply store all levels of memory within one array of "Memory" objects. Each memory object could hold a given number of words and so could be used to represent each type of storage. The index of each type of storage would have to be tracked rather than named but given the labels of each type of storage in the architecture diagram of the original DEUCE (DL1, TS13, QS17 etc.) seen in Figure \ref{fig:arch}, it would not be difficult to do so. The number of each type of storage from the labels could be simply used as indexes within the array.
 
 For this reason, it was decided that an array would be used over a dictionary. Ultimately, using a dictionary would overcomplicate the design of memory as software and an array would be a more efficient and effective way of keeping track of memory.
 \subsection{Delay Line Architecture}
-Following on from the overall design of the memory storage of the DEUCE, another large design challenge regarding the system architecture of the DEUCE emulator was the design of access to the delay lines. In early computers, delay lines provided fast access to data using mercury and acoustic pulses. With the data constantly flowing in the mercury tanks, it was necessary to keep track of where the data was in the delay lines using minor and major cycles. One minor cycle represented one pulse, while one major cycle represented how long it took for data to flow around an entire delay line. This is why DEUCE instructions feature Wait and Timing numbers, as these numbers calculate where in the delay lines certain data will be.
+Following on from the overall design of the memory storage of the DEUCE, another large design challenge regarding the system architecture of the DEUCE emulator was the design of access to the delay lines. In early computers, delay lines provided access to data using mercury and acoustic pulses. With the data constantly flowing in the mercury tanks, it was necessary to keep track of where the data was in the delay lines using minor and major cycles. One minor cycle represented one pulse, while one major cycle represented how long it took for data to flow around an entire delay line. This is why DEUCE instructions feature Wait and Timing numbers, as these numbers calculate where in the delay lines certain data will be.
 
-Within a web application version of the DEUCE, the design of the delay line storage of the DEUCE posed a problem. Without physical mercury delay line storage available to this emulator, a suitable substitute was needed to represent this behaviour. To emulate the behaviour of minor and major cycles of delay lines, it was deicded that there should be a clock to measure minor cycles. This would be designed as a counter that would increment by 1 every minor cycle. Using this counter, it would be possible to track where data was being held in each delay line. Essentially, this counter would act like a pointer to an array. This solved the design problem of using an alternative to physical delay line storage.
+Within a web application version of the DEUCE, the design of the delay line storage of the DEUCE posed a problem. Without physical mercury delay line storage available to this emulator, a suitable substitute was needed to represent this behaviour. To emulate the behaviour of minor and major cycles of delay lines, it was decided that there should be a clock to measure minor cycles. This would be designed as a counter that would increment by 1 every minor cycle. Using this counter, it would be possible to track where data was being held in each delay line. Essentially, this counter would act like a pointer to an array. This solved the design problem of using an alternative to physical delay line storage.
 
 \subsection{Instruction Processing}
 The design of how instructions would be processed in the DEUCE emulator was another challenging task. Each memory location in the DEUCE could hold one 32-bit word that could represent an instruction or data. A 32-bit instruction was broken down into several parts: the NIS, the Source, the Destination, the Characteristic, the Wait, the Timing and the Go bit. In an emulator, this would mean parsing a 32-bit number to retrieve each part of the instruction. Using these parts of the instruction, a word could be moved from one location in memory to another. 
@@ -315,32 +342,36 @@ The design of how instructions would be processed in the DEUCE emulator was anot
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=\linewidth]{images/deuce-uml}
-	\caption{UML diagram describing the system architecture.}
-	\label{fig:uml}
+	\caption{UML diagram describing the system architecture. Rules for creating the diagram were followed from \citet{uml18}. Input can be given via 2 sources, which is then executed via a series of single shots. On the original DEUCE, output could be given in three forms, so the project would aim to recreate this functionality.}
+    \label{fig:uml}
 \end{figure}
-
-To help visualise the instruction processing of the emulator more clearly, a UML diagram was created in the early stages of design, shown in Figure \ref{fig:uml}. The diagram shows the two forms of input a user can use to provide the emulator with data: either using a pre-written punch card, or the input switches on the console. If a punch card is entered, the card will be read in and the console will show the status of the card, either as being "Called", "Ready" or as "Being read". After the card has been read in, the Initial Input switch can be pressed to load the card into storage, so that program execution can begin. Storage can be cleared using the "clear store" switch.
-
+	
+To help visualise the instruction processing of the emulator more clearly, a UML diagram was created in the early stages of design following rules established by \citet{uml18}, shown in Figure \ref{fig:uml}. This diagram was based on the description of how the DEUCE functioned in \citet{Vowels05}The diagram shows the two forms of input a user can use to provide the emulator with data: either using a pre-written punch card, or the input switches on the console. If a punch card is entered, the card will be read in and the console will show the status of the card, either as being "Called", "Ready" or as "Being read". After the card has been read in, the Initial Input switch can be pressed to load the card into storage, so that program execution can begin. Storage can be cleared using the "clear store" switch.
+	
 For input via the Input Dynamiciser switches, the current state of the Input Dynamiciser will be displayed on the ID lights. These lights can be reset to 0 using the "Clear ID" switch. Each ID switch represents one bit of a 32-bit word. When the user wants to enter an instruction, they would press the "One Shot" switch to execute said instruction.
-
+	
 Regarding output, the DEUCE should display output on the Output Staticiser lights. These lights display the output of the last instruction executed as a 32-bit reverse binary word. The original DEUCE could also write output to punched cards or to the system's monitor. These features may not be implemented in this version of the DEUCE but it was important to show that these features were part of the original DEUCE architecture.
 
 From using this diagram, the flow of program execution in the DEUCE can be seen. It identifies the key components of the DEUCE based on the functional requirements from Chapter 3.
-
+	
 \section{User Interface}
 One of the key differences between the interface of the DEUCE emulator and the original DEUCE interface is the lack of hardware. Given that this project would be written entirely as software, one of they key challenges would be replicating the physical features of the DEUCE within software and representing them correctly to the user. To solve this problem, visual metaphors would need to be used to allow the user to feel as though they were using the original DEUCE.
-
+	
 The DEUCE is comprised of many switches and lights. It also features a dial to set the number of single shots to be executed in succession. While it is not possible to physically recreate these components, it is important to give the user correct feedback when operating them. To solve this challenge, it was decided that switches and lights would need to be animated properly to give the user good feedback on their actions.
-
+	
 Another large difference between a software-only DEUCE and a real DEUCE is the absence of a card reader and card punch. In the original DEUCE, a Hollerith card reader was used to read in pre-written programs and a card punch was used to physically print output on card. To replicate a card reader in a web application, a good solution would be to provide a file upload button and have users browse files to mimic inserting a program into the DEUCE. A better solution would be to use a web framework that supports "drag and drop" features, which would allow a user to "drop" a card into the card reader. 
+	
+For these reasons, it was necessary to select a web framework that would support these graphical needs. The selection of an appropriate web framework is later discussed in Chapter 5.
 
-For these reasons, it was necessary to select a web framework that would support these graphical needs.
-
+\section{Summary}
+The design stage of the project was important for planning how each aspect of the project would be created. During this stage, major challenges in the design of each major component of the DEUCE were tackled, and it was decided how these challenges would be solved without reference to specific implementation. Given the complexity of the design of the original DEUCE, it was necessary to think of modern alternatives that could work within a web application. Overall, the steps taken here were very useful for the Implementation stage of the project.
 
 %==================================================================================================================================
 \chapter{Implementation}
-This chapter discusses the implementation of the DEUCE emulator and how 
+This chapter discusses the implementation of the DEUCE emulator in terms of both front-end and back-end development. It also discusses the choice of web framework and the decisions behind this choice. 
+
 \section{Web framework choice}
+The emulator was written as a web application because hosting it on the internet would allow a large number of people to access it from almost anywhere in the world.
 \subsection{Angular}
 \subsection{React}
 \subsection{Vue.js}
@@ -349,8 +380,13 @@ This chapter discusses the implementation of the DEUCE emulator and how
 \section{Guidance}
 You can't talk about everything. Cover the high level first, then cover important, relevant or impressive details.
 
+
+
 \section{General points}
+
 These points apply to the whole dissertation, not just this chapter.
+
+
 
 \subsection{Figures}
 \emph{Always} refer to figures included, like Figure \ref{fig:relu}, in the body of the text. Include full, explanatory captions and make sure the figures look good on the page.
@@ -374,26 +410,6 @@ You may include multiple figures in one float, as in Figure \ref{fig:synthetic},
 \end{figure}
 
 
-\begin{figure}
-    \centering
-    \begin{subfigure}[b]{0.45\textwidth}
-        \includegraphics[width=\textwidth]{images/synthetic.png}
-        \caption{Synthetic image, black on white.}
-        \label{fig:syn1}
-    \end{subfigure}
-    ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
-      %(or a blank line to force the subfigure onto a new line)
-    \begin{subfigure}[b]{0.45\textwidth}
-        \includegraphics[width=\textwidth]{images/synthetic_2.png}
-        \caption{Synthetic image, white on black.}
-        \label{fig:syn2}
-    \end{subfigure}
-    ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
-    %(or a blank line to force the subfigure onto a new line)    
-    \caption{Synthetic test images for edge detection algorithms. \subref{fig:syn1} shows various gray levels that require an adaptive algorithm. \subref{fig:syn2}
-    shows more challenging edge detection tests that have crossing lines. Fusing these into full segments typically requires algorithms like the Hough transform.
-    }\label{fig:synthetic}
-\end{figure}
 
 \clearpage
 
@@ -408,6 +424,38 @@ For example, we might define:
 \end{equation}    
 where $\hat{f}(\xi)$ is the Fourier transform of the time domain signal $f(x)$.
 
+\subsection{Algorithms}
+Algorithms can be set using \texttt{algorithm2e}, as in Algorithm \ref{alg:metropolis}.
+
+% NOTE: line ends are denoted by \; in algorithm2e
+\begin{algorithm}
+    \DontPrintSemicolon
+    \KwData{$f_X(x)$, a probability density function returing the density at $x$.\; $\sigma$ a standard deviation specifying the spread of the proposal distribution.\;
+    $x_0$, an initial starting condition.}
+    \KwResult{$s=[x_1, x_2, \dots, x_n]$, $n$ samples approximately drawn from a distribution with PDF $f_X(x)$.}
+    \Begin{
+        $s \longleftarrow []$\;
+        $p \longleftarrow f_X(x)$\;
+        $i \longleftarrow 0$\;
+        \While{$i < n$}
+        {
+            $x^\prime \longleftarrow \mathcal{N}(x, \sigma^2)$\;
+            $p^\prime \longleftarrow f_X(x^\prime)$\;
+            $a \longleftarrow \frac{p^\prime}{p}$\;
+            $r \longleftarrow U(0,1)$\;
+            \If{$r<a$}
+            {
+                $x \longleftarrow x^\prime$\;
+                $p \longleftarrow f_X(x)$\;
+                $i \longleftarrow i+1$\;
+                append $x$ to $s$\;
+            }
+        }
+    }
+    
+\caption{The Metropolis-Hastings MCMC algorithm for drawing samples from arbitrary probability distributions, 
+specialised for normal proposal distributions $q(x^\prime|x) = \mathcal{N}(x, \sigma^2)$. The symmetry of the normal distribution means the acceptance rule takes the simplified form.}\label{alg:metropolis}
+\end{algorithm}
 
 \subsection{Tables}
 
@@ -498,7 +546,6 @@ Avoid putting large blocks of code in the report (more than a page in one block,
 %==================================================================================================================================
 \chapter{Evaluation} 
 How good is your solution? How well did you solve the general problem, and what evidence do you have to support that?
-
 \section{Comparison of features with original DEUCE}
 \section{Guidance}
 \begin{itemize}
