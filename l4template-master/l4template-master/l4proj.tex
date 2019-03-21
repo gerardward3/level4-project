@@ -370,178 +370,97 @@ The design stage of the project was important for planning how each aspect of th
 \chapter{Implementation}
 This chapter discusses the implementation of the DEUCE emulator in terms of both front-end and back-end development. It also discusses the choice of web framework and the decisions behind this choice. 
 
-\section{Web framework choice}
-The emulator was written as a web application because hosting it on the internet would allow a large number of people to access it from almost anywhere in the world.
-\subsection{Angular}
-\subsection{React}
-\subsection{Vue.js}
+\section{Development Tools}
+Many different development tools were used to aid in the creation of the DEUCE emulator. The reasons behind choosing these tools are explained in the following sections.
+
+\subsection{Web Framework}
+The emulator was written as a web application because hosting it on the internet would allow a large number of people to access it from almost anywhere in the world. To make the emulator a suitable, modern web application, it was necessary to choose a web framework in which to create the project. Web frameworks allow for "the producibility of mature web applications with a wide range of possible features and desktop-like user interaction" \citep{kersten10}. With this in mind, three of the most popular JavaScript based web frameworks were considered to produce the DEUCE emulator: Angular \citep{angular19}, ReactJS \citep{react19} and Vue.js \citep{vue19}. JavaScript is widely used by many web applications \citep{javascript15} and would therefore be an appropriate choice of language to create this web application. Ultimately, it was decided that Angular would be chosen over the other two frameworks.
+
+Angular is a web framework created by Google that is used for building mobile and desktop web applications \citep{angular19}. While the original version of Angular was titled AngularJS and used JavaScript, Angular in its current form uses TypeScript. However, it can still be considered JavaScript based as TypeScript shares many similarities with JavaScript and is transpiled into JavaScript when Angular applications are run in web browsers \citep{Clow18}. One of the key advantages of TypeScript over JavaScript in this project is that it is more similar to an object-oriented language such as Java than JavaScript, as it provides features such as strong typing, classes and interfaces \citep{typescript18}. An object-oriented approach, as defined by \citet{chambers14}, would be highly suitable to building this emulator as it would be a useful way to structure both the memory of the DEUCE and the graphical components for the user interface. Therefore, this gave Angular a large advantage over ReactJS and Vue.js as a choice of framework for this project.
+
+Another advantage of Angular is that it features a large library of learning resources compared to other web frameworks. Having been built and maintained by Google, there were a vast number of tutorials and development guides compared to frameworks that are still growing, such as Vue.js \citep{vue19}. For this reason, this gave Angular another advantage as choice of web framework for this project.
+
+\subsection{Node.js}
+The Angular Command Line Interface was needed to build the emulator as an Angular application and in order for it to function properly, it was necessary to use Node.js \citep{node19}. Node is an open-source JavaScript runtime which is used as a platform for development tools and provides many reusable code modules \citep{ClowNode18}. Using the Node Package Manager \citep{npm19}, Node.js provided many useful modules for the project to be built and run.
+
+\subsection{Version Control}
+Using version control was an essential step in the implementation process, as version control "allows you to track iterative changes you make to your code" \citep{vcs16}. By using version control, it was possible for the code to be stored in a remote repository and to access a history of changes made to the code over time. For this project, GitHub \citep{github19} was used for version control. GitHub was beneficial for this project in particular because it also provided a way of hosting the project as a web application online through GitHub Pages \citep{githubpages19}. Using GitHub Pages, the project was deployed at:
+
+ \url{https://gerardward3.github.io/level4-project/}
+ 
+\subsection{Integrated Development Environment}
+To help with writing and detecting bugs in code, an Integrated Development Environment (IDE) was necessary to use. According to \citet{ide15}, IDEs "improve developer productivity by assisting with tasks such as navigating among classes and methods, continuous compilation, code refactoring, automated testing, and integrated debugging". As this project used Angular as a framework, much of the code was written in TypeScript. For this reason, Visual Studio Code was chosen as an IDE, as "it was written by the same people who wrote TypeScript, so we know it will work well with it" \citep{visualstudio18}. It also "includes support for debugging, embedded Git control, syntax highlighting, intelligent code completion, snippets, and code refactoring" \citep{visualstudio18}. For these reasons, Visual Studio was a sensible choice as an Integrated Development Environment.
+
 \section{Front-end development}
+With the code broadly being split into "front-end" and "back-end", front-end development was started before back-end development. For the purpose of this project, "front-end" development will refer to the creation of the graphical user interface of the emulator, while "back-end" will refer to the underlying logic and behaviour of the emulator. The purpose of starting front-end development before back-end was to design a user interface that a user could load in their web browser and then make changes to each graphical component as required. 
+
+\subsection{Graphics}
+The images used in the console are taken from an open source library of clip art images, under the Creative Commons Zero 1.0 Public Domain License. The lights and switches both have two states and show different images indicating which state they are in. This is designed to give the user feedback from their actions. The dial image is not interactive - it is there only to recreate the dial on the original DEUCE panel.
+
+\subsection{HTML and CSS}
+The GUI of the emulator was written using HTML and CSS. For each type of graphical component, an Angular component was generated, providing an HTML, CSS and TypeScript file. The HTML of the overall panel features all graphical components, split up and organised using the Flexible Box Module, or Flexbox. Flexbox allows for powerful alignment controls over HTML elements using CSS. 
+
+For each graphical component, an image path and an ID are given. The image path defines which image is to be displayed, and interacts with the TypeScript file of the component to retrieve this image. The ID is used to identify the place of the graphical component on the panel.
+
+Switch components also feature a click() function in their HTML. This function listens for when a switch has been clicked and then performs an action based on the ID of the switch. For example, the when an Input Dynamiciser switch has been clicked, this is detected and in the TypeScript file for this component, its respective light is switched on.
+
+Overall, it was important to use good HTML and CSS methods to faithfully recreate the front panel of the DEUCE. While the HTML panel of the emulator is complex due to the number of graphical components, it was important to define each of these individual graphical components with their own ID so the correct functionality could be performed. It was also important to use Flexbox to recreate the same layout as the original DEUCE.
+
 \section{Back-end development}
-\section{Guidance}
-You can't talk about everything. Cover the high level first, then cover important, relevant or impressive details.
+The back-end development of the emulator was then carried out after a graphical user interface had been designed and deployed through Angular. This development concerned the logic of the emulator and intended to recreate the same behaviour found in the DEUCE itself.
 
-
-
-\section{General points}
-
-These points apply to the whole dissertation, not just this chapter.
-
-
-
-\subsection{Figures}
-\emph{Always} refer to figures included, like Figure \ref{fig:relu}, in the body of the text. Include full, explanatory captions and make sure the figures look good on the page.
-You may include multiple figures in one float, as in Figure \ref{fig:synthetic}, using \texttt{subcaption}, which is enabled in the template.
-
-
-
-% Figures are important. Use them well.
-\begin{figure}
-    \centering
-    \includegraphics[width=0.5\linewidth]{images/relu.pdf}    
-
-    \caption{In figure captions, explain what the reader is looking at: ``A schematic of the rectifying linear unit, where $a$ is the output amplitude,
-    $d$ is a configurable dead-zone, and $Z_j$ is the input signal'', as well as why the reader is looking at this: 
-    ``It is notable that there is no activation \emph{at all} below 0, which explains our initial results.'' 
-    \textbf{Use vector image formats (.pdf) where possible}. Size figures appropriately, and do not make them over-large or too small to read.
-    }
-
-    % use the notation fig:name to cross reference a figure
-    \label{fig:relu} 
+\subsection{Memory}
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[t]{0.45\textwidth}
+		\includegraphics[width=\textwidth]{images/register-class}
+		\caption{Register class from codebase. An array of numbers is created through the size parameter given in the constructor.}
+		\label{fig:reg-class}
+	\end{subfigure}
+	\quad
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+	%(or a blank line to force the subfigure onto a new line)
+	\begin{subfigure}[t]{0.45\textwidth}
+		\includegraphics[width=\textwidth]{images/quad-store-class}
+		\caption{QuadStore class from codebase. The QuadStore class extends the Register class to create an array of size 4. This allows it to hold 4 words, as did quad stores in the original DEUCE.}
+		\label{fig:quad-class}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+	%(or a blank line to force the subfigure onto a new line)    
+	\caption{Excerpts from codebase of project. These show how an example of a DEUCE register is created in the emulator.}
+	\label{fig:ace-comps}
 \end{figure}
+The memory of the DEUCE emulator was created using an object-oriented approach. Firstly, a Register class was created, which stores an array of TypeScript numbers of a given size in the "storage" field. Each number in this array is decimal and is then converted to a 32-bit reverse binary number when it is retrieved for use by the emulator later on. 
 
+The Register class is then inherited by classes of the various levels of memory used in the DEUCE emulator: TemporaryStore, DoubleStore, QuadStore and DelayLine. Each of these classes are essentially Register classes with different sizes of storage. The size of the storage is determined by the value given in the super constructor of each class. For example, a DelayLine class gives a parameter of 32 in the super constructor while a QuadStore gives a size of 4 in the super constructor. This value represents the number of words each level of storage could hold in the DEUCE.
 
+These objects then comprise a Memory class, which stores all levels of memory in an array and is constructed when the application is initially loaded. Index 0 of this array is set to null, as the DEUCE did not store data in memory address 0. Indexes 1 to 12 are then initialised with DelayLine objects, indexes 13 to 16 with TemporaryStore objects, indexes 17 to 18 with QuadStore objects and indexes 19 to 21 with DoubleStore objects. Using this array, the various forms of DEUCE storage can be accessed.
 
-\clearpage
+\subsection{Instruction Processing}
+The bulk of the logic for instruction processing can be found in the panel.component.ts file. The switchClicked() function listens for when a switch is clicked on the panel of the emulator. When it detects that a switch has been clicked, it checks for the type of switch that was clicked. For example, if the switch has a corresponding light on the panel, the light which corresponds to this switch is switched on. 
 
-\subsection{Equations}
+Instructions given in the Input Dynamiciser are processed when it is detected that the Single Shot switch has been clicked. When this happens, the instruction is converted into a binary array of length 32 through the readInstructionFromPanel() function. The program then checks if it is reading in an instruction or a data value, i.e. if the previous instruction gave a Source value of 0. When it is determined that an instruction was given, the instruction is then broken down into various fields. These fields are:
 
-Equations should be typeset correctly and precisely. Make sure you get parenthesis sizing correct, and punctuate equations correctly 
-(the comma is important and goes \textit{inside} the equation block). Explain any symbols used clearly if not defined earlier. 
+\begin{itemize}
+	\item Next Instruction Source (NIS) - this determines which delay line in memory to read the next instruction from in a program.
+	\item Source - this determines the Source address of the instruction.
+	\item Destination - this determines the Destination address of the instruction.
+	\item Characteristic - this indicates whether or not the transfer went on for only one minor cycle.
+	\item Wait - this delays the execution of an instruction.
+	\item Timing - this indicates where in the delay line specified the instruction is to be found.
+	\item Go - this is used to halt execution of a program.
+\end{itemize}
 
-For example, we might define:
-\begin{equation}
-    \hat{f}(\xi) = \frac{1}{2}\left[ \int_{-\infty}^{\infty} f(x) e^{2\pi i x \xi} \right],
-\end{equation}    
-where $\hat{f}(\xi)$ is the Fourier transform of the time domain signal $f(x)$.
+The instruction is then checked for any Source or Destination addresses that can perform special functions, such as Source 0 for a data value to be read from the Input Dynamiciser, Destination 25 for addition etc. After these are checked, the memory transfer is performed and the Go bit is checked to discover if program execution should or should not be halted. After an instruction has been processed, the emulator then either waits on another switch to be clicked or continues with the next instruction specified through the NIS and Timing fields.
 
-\subsection{Algorithms}
-Algorithms can be set using \texttt{algorithm2e}, as in Algorithm \ref{alg:metropolis}.
+\subsection{Minor and major cycling}
+While the original DEUCE used minor and major cycling to perform memory accesses to delay lines, this functionality was not captured in this emulator. The data stored in the mercury delay lines of the original DEUCE was constantly moving inside the tanks and data could be encoded through acoustic pulses in memory. To access this data, minor and major cycles were used to measure where in memory certain words were being held. An attempt at recreating this behaviour was started through the creation of a timer in TypeScript. The dlIndex field in panel.component.ts increments by 1 every half second, used to represent a minor cycle, and is then divided by 32, with its remainder being used to represent 32 minor cycles. This essentially acts as a pointer to an array and could be used in a future version of the emulator to recreate the behaviour of minor and major cycling.
 
-% NOTE: line ends are denoted by \; in algorithm2e
-\begin{algorithm}
-    \DontPrintSemicolon
-    \KwData{$f_X(x)$, a probability density function returing the density at $x$.\; $\sigma$ a standard deviation specifying the spread of the proposal distribution.\;
-    $x_0$, an initial starting condition.}
-    \KwResult{$s=[x_1, x_2, \dots, x_n]$, $n$ samples approximately drawn from a distribution with PDF $f_X(x)$.}
-    \Begin{
-        $s \longleftarrow []$\;
-        $p \longleftarrow f_X(x)$\;
-        $i \longleftarrow 0$\;
-        \While{$i < n$}
-        {
-            $x^\prime \longleftarrow \mathcal{N}(x, \sigma^2)$\;
-            $p^\prime \longleftarrow f_X(x^\prime)$\;
-            $a \longleftarrow \frac{p^\prime}{p}$\;
-            $r \longleftarrow U(0,1)$\;
-            \If{$r<a$}
-            {
-                $x \longleftarrow x^\prime$\;
-                $p \longleftarrow f_X(x)$\;
-                $i \longleftarrow i+1$\;
-                append $x$ to $s$\;
-            }
-        }
-    }
-    
-\caption{The Metropolis-Hastings MCMC algorithm for drawing samples from arbitrary probability distributions, 
-specialised for normal proposal distributions $q(x^\prime|x) = \mathcal{N}(x, \sigma^2)$. The symmetry of the normal distribution means the acceptance rule takes the simplified form.}\label{alg:metropolis}
-\end{algorithm}
+\subsection{Initial Input}
+While a card reader could not be implemented in this version of the emulator, a program was hard-coded into the emulator to show the functionality of how a pre-written program could be read into the DEUCE and processed. This program lights up the Output Staticiser lights from left to right from 1 to 32. The purpose of this program is to show the functionality of the NIS and Timing fields during instruction processing. Each of these fields is used to specify where in memory the next instruction is being held, so the program can continue without halting execution. The Go bit is also used to allow execution of the program to continue.
 
-\subsection{Tables}
-
-If you need to include tables, like Table \ref{tab:operators}, use a tool like https://www.tablesgenerator.com/ to generate the table as it is
-extremely tedious otherwise. 
-
-\begin{table}[]
-    \caption{The standard table of operators in Python, along with their functional equivalents from the \texttt{operator} package. Note that table
-    captions go above the table, not below. Do not add additional rules/lines to tables. }\label{tab:operators}
-    %\tt 
-    \rowcolors{2}{}{gray!3}
-    \begin{tabular}{@{}lll@{}}
-    %\toprule
-    \textbf{Operation}    & \textbf{Syntax}                & \textbf{Function}                            \\ %\midrule % optional rule for header
-    Addition              & \texttt{a + b}                          & \texttt{add(a, b)}                                    \\
-    Concatenation         & \texttt{seq1 + seq2}                    & \texttt{concat(seq1, seq2)}                           \\
-    Containment Test      & \texttt{obj in seq}                     & \texttt{contains(seq, obj)}                           \\
-    Division              & \texttt{a / b}                          & \texttt{div(a, b) }  \\
-    Division              & \texttt{a / b}                          & \texttt{truediv(a, b) } \\
-    Division              & \texttt{a // b}                         & \texttt{floordiv(a, b)}                               \\
-    Bitwise And           & \texttt{a \& b}                         & \texttt{and\_(a, b)}                                  \\
-    Bitwise Exclusive Or  & \texttt{a \textasciicircum b}           & \texttt{xor(a, b)}                                    \\
-    Bitwise Inversion     & \texttt{$\sim$a}                        & \texttt{invert(a)}                                    \\
-    Bitwise Or            & \texttt{a | b}                          & \texttt{or\_(a, b)}                                   \\
-    Exponentiation        & \texttt{a ** b}                         & \texttt{pow(a, b)}                                    \\
-    Identity              & \texttt{a is b}                         & \texttt{is\_(a, b)}                                   \\
-    Identity              & \texttt{a is not b}                     & \texttt{is\_not(a, b)}                                \\
-    Indexed Assignment    & \texttt{obj{[}k{]} = v}                 & \texttt{setitem(obj, k, v)}                           \\
-    Indexed Deletion      & \texttt{del obj{[}k{]}}                 & \texttt{delitem(obj, k)}                              \\
-    Indexing              & \texttt{obj{[}k{]}}                     & \texttt{getitem(obj, k)}                              \\
-    Left Shift            & \texttt{a \textless{}\textless b}       & \texttt{lshift(a, b)}                                 \\
-    Modulo                & \texttt{a \% b}                         & \texttt{mod(a, b)}                                    \\
-    Multiplication        & \texttt{a * b}                          & \texttt{mul(a, b)}                                    \\
-    Negation (Arithmetic) & \texttt{- a}                            & \texttt{neg(a)}                                       \\
-    Negation (Logical)    & \texttt{not a}                          & \texttt{not\_(a)}                                     \\
-    Positive              & \texttt{+ a}                            & \texttt{pos(a)}                                       \\
-    Right Shift           & \texttt{a \textgreater{}\textgreater b} & \texttt{rshift(a, b)}                                 \\
-    Sequence Repetition   & \texttt{seq * i}                        & \texttt{repeat(seq, i)}                               \\
-    Slice Assignment      & \texttt{seq{[}i:j{]} = values}          & \texttt{setitem(seq, slice(i, j), values)}            \\
-    Slice Deletion        & \texttt{del seq{[}i:j{]}}               & \texttt{delitem(seq, slice(i, j))}                    \\
-    Slicing               & \texttt{seq{[}i:j{]}}                   & \texttt{getitem(seq, slice(i, j))}                    \\
-    String Formatting     & \texttt{s \% obj}                       & \texttt{mod(s, obj)}                                  \\
-    Subtraction           & \texttt{a - b}                          & \texttt{sub(a, b)}                                    \\
-    Truth Test            & \texttt{obj}                            & \texttt{truth(obj)}                                   \\
-    Ordering              & \texttt{a \textless b}                  & \texttt{lt(a, b)}                                     \\
-    Ordering              & \texttt{a \textless{}= b}               & \texttt{le(a, b)}                                     \\
-    % \bottomrule
-    \end{tabular}
-    \end{table}
-\subsection{Code}
-
-Avoid putting large blocks of code in the report (more than a page in one block, for example). Use syntax highlighting if possible, as in Listing \ref{lst:callahan}.
-
-\begin{lstlisting}[language=python, float, caption={The algorithm for packing the $3\times 3$ outer-totalistic binary CA successor rule into a 
-    $16\times 16\times 16\times 16$ 4 bit lookup table, running an equivalent, notionally 16-state $2\times 2$ CA.}, label=lst:callahan]
-    def create_callahan_table(rule="b3s23"):
-        """Generate the lookup table for the cells."""        
-        s_table = np.zeros((16, 16, 16, 16), dtype=np.uint8)
-        birth, survive = parse_rule(rule)
-
-        # generate all 16 bit strings
-        for iv in range(65536):
-            bv = [(iv >> z) & 1 for z in range(16)]
-            a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p = bv
-
-            # compute next state of the inner 2x2
-            nw = apply_rule(f, a, b, c, e, g, i, j, k)
-            ne = apply_rule(g, b, c, d, f, h, j, k, l)
-            sw = apply_rule(j, e, f, g, i, k, m, n, o)
-            se = apply_rule(k, f, g, h, j, l, n, o, p)
-
-            # compute the index of this 4x4
-            nw_code = a | (b << 1) | (e << 2) | (f << 3)
-            ne_code = c | (d << 1) | (g << 2) | (h << 3)
-            sw_code = i | (j << 1) | (m << 2) | (n << 3)
-            se_code = k | (l << 1) | (o << 2) | (p << 3)
-
-            # compute the state for the 2x2
-            next_code = nw | (ne << 1) | (sw << 2) | (se << 3)
-
-            # get the 4x4 index, and write into the table
-            s_table[nw_code, ne_code, sw_code, se_code] = next_code
-
-        return s_table
-
-\end{lstlisting}
+\section{Summary}
+This chapter examined the technical implementation of the DEUCE emulator and the tools used to create it. Through this process, a working emulator was made and deployed. The version featured much of the functionality of the original DEUCE and its effectiveness as an emulator would go on to be evaluated, as seen in Chapter 6.
 
 %==================================================================================================================================
 \chapter{Evaluation} 

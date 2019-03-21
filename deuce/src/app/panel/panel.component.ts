@@ -283,7 +283,7 @@ export class PanelComponent implements OnInit {
     const osArray = this.OSLights.toArray();
     for (let i = 0; i < 32; i++) {
       osArray[i].state = false;
-      osArray[i].imgPath = 'assets/img/DomeLight_offWhite.png';
+      osArray[i].imgPath = 'assets/img/domelight_offwhite.png';
     }
     return osArray;
   }
@@ -325,7 +325,7 @@ export class PanelComponent implements OnInit {
         current.imgPath = 'assets/img/DomeLight_onRed.png';
       } else {
         current.state = false;
-        current.imgPath = 'assets/img/DomeLight_offWhite.png';
+        current.imgPath = 'assets/img/domelight_offwhite.png';
       }
     }
   }

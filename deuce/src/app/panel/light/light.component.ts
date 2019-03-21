@@ -16,7 +16,7 @@ export class LightComponent implements OnInit {
   imgPath: string;
 
   constructor() {
-    this.imgPath = 'assets/img/DomeLight_offWhite.png';
+    this.imgPath = 'assets/img/domelight_offwhite.png';
     this.state = false;
   }
 
