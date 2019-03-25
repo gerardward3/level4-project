@@ -243,8 +243,6 @@ export class PanelComponent implements OnInit {
       this.memory.stores[destination].storage[timing] = this.memory.stores[source].storage[timing];
     }
 
-    console.log(this.memory);
-
     // If Go bit is 1, this proceeds to execute next instruction immediately.
     if (go) {
       setTimeout(() => {
