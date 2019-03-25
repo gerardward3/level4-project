@@ -156,6 +156,11 @@ export class PanelComponent implements OnInit {
 
   // Breaks down instruction to individual parts and processes instruction.
   processInstruction(instruction) {
+    let xdl = 0;
+    if (instruction[0] === 1) {
+      xdl = 1;
+    }
+
     const nis = this.calculateFormat(instruction.slice(1, 3 + 1));
     const source = this.calculateFormat(instruction.slice(4, 8 + 1));
     const destination = this.calculateFormat(instruction.slice(9, 13 + 1));
