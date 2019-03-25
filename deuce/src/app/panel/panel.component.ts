@@ -40,7 +40,6 @@ export class PanelComponent implements OnInit {
     this.lastInstruction = null;
     this.lastDestination = 0;
     this.IDtotal = 0;
-    console.log(this.memory);
   }
 
   ngOnInit() {
