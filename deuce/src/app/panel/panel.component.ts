@@ -40,6 +40,7 @@ export class PanelComponent implements OnInit {
     this.lastInstruction = null;
     this.lastDestination = 0;
     this.IDtotal = 0;
+    console.log(this.memory);
   }
 
   ngOnInit() {
@@ -117,6 +118,10 @@ export class PanelComponent implements OnInit {
     this.memory.stores[2].storage[29] = 3154131684;
     this.memory.stores[2].storage[30] = 3187678596;
     this.memory.stores[2].storage[31] = 2147498726;
+
+    this.memory.stores[3].storage[1] = 2248154054;
+    this.memory.stores[3].storage[2] = 2248154070;
+    this.memory.stores[3].storage[3] = 15062;
   }
 
   // Reads input from Input Dynamiciser and returns 32-bit instruction
@@ -137,8 +142,10 @@ export class PanelComponent implements OnInit {
     const binArray = [];
     let k = 0;
     for (let i = 31; i >= 0; i--) {
-      k = decimal >> i; 
-      if (k & 1) { 
+      // tslint:disable-next-line:no-bitwise
+      k = decimal >> i;
+      // tslint:disable-next-line:no-bitwise
+      if (k & 1) {
           binArray.unshift(1);
       } else {
           binArray.unshift(0);
@@ -170,15 +177,15 @@ export class PanelComponent implements OnInit {
 
     // Source 23 - Divide contents of TS14 by 2 and place in Destination address.
     } else if (source === 23) {
-      this.memory.stores[destination].storage[0] = this.memory.stores[14].storage[0] / 2;
+      this.memory.stores[destination].storage[wait] = this.memory.stores[14].storage[0] / 2;
 
     // Source 24 - Multiply contents of TS14 by 2 and place in Destination address.
     } else if (source === 24) {
-      this.memory.stores[destination].storage[0] = this.memory.stores[14].storage[0] * 2;
+      this.memory.stores[destination].storage[wait] = this.memory.stores[14].storage[0] * 2;
 
     // Source 27 - Place 1 in Destination address.
     } else if (source === 27) {
-      this.memory.stores[destination].storage[0] = 1;
+      this.memory.stores[destination].storage[wait] = 1;
 
     // Source 28 - Place 2^16 in Destination address.
     } else if (source === 28) {
@@ -190,21 +197,21 @@ export class PanelComponent implements OnInit {
 
     // Source 30 - Place 0 in Destination address.
     } else if (source === 30) {
-      this.memory.stores[destination].storage[0] = 0;
+      this.memory.stores[destination].storage[timing] = 0;
 
     // Source 31 - Place -1 in Destination address.
     } else if (source === 31) {
-      this.memory.stores[destination].storage[0] = -1;
+      this.memory.stores[destination].storage[timing] = -1;
     }
 
     // Checks Destination value of instruction for special cases
     // Destination 25 - Adds contents of Source address to TS13.
     if (destination === 25) {
-        this.memory.stores[13].storage[0] += this.memory.stores[source].storage[wait];
+        this.memory.stores[13].storage[0] += this.memory.stores[source].storage[timing];
 
     // Destination 26 - Subtracts contents of Source address from TS13.
     } else if (destination === 26) {
-        this.memory.stores[13].storage[0] -= this.memory.stores[source].storage[wait];
+        this.memory.stores[13].storage[0] -= this.memory.stores[source].storage[timing];
 
     // Destination 27 - Checks if contents of Source address is negative or positive.
     // Goes to one of two adjacent memory addresses in memory depending on outcome.
@@ -228,8 +235,10 @@ export class PanelComponent implements OnInit {
 
     // Checks if source and destination are valid memory locations and performs transfer.
     if (source <= 22 && destination <= 22) {
-      this.memory.stores[destination].storage[wait] = this.memory.stores[source].storage[wait];
+      this.memory.stores[destination].storage[timing] = this.memory.stores[source].storage[timing];
     }
+
+    console.log(this.memory);
 
     // If Go bit is 1, this proceeds to execute next instruction immediately.
     if (go) {
@@ -272,7 +281,9 @@ export class PanelComponent implements OnInit {
     let sMask = '';
     for (let nFlag = 0, nShifted = nMask; nFlag < 32;) {
       nFlag++;
+      // tslint:disable-next-line:no-bitwise
       sMask += String(nShifted >>> 31);
+      // tslint:disable-next-line:no-bitwise
       nShifted <<= 1;
     }
     return sMask;
