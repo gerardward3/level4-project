@@ -86,12 +86,12 @@ this emulator will be explained in this chapter.
 
 In 1951, the English Electric company decided to begin building models of the Digital Electronic Universal Computing Engine, also known as the DEUCE \citep{Vowels05}. This computer was based on Alan Turing's Pilot ACE computer but improved on the ACE in several ways, namely by improving upon the speed and reliability of the ACE, adding further storage and adding a large program and subroutine library. Due to these improvements, the DEUCE was considered a success: in total, approximately 33 DEUCEs were created, with the first being made commercially available in 1955. \citep{Vowels05}. DEUCEs were mainly installed at governmental departments, aircraft design facilities and universities. Therefore, as an early, commercially successful stored program computer, the DEUCE has a hugely important part in the history of Computing Science.
 
-Among the universities that installed a DEUCE was the University of Glasgow \citep{Glasgow60}. In 1957, the university established Scotland's first computing lab and chose Dr. Dennis Gilles as its initial Director of Computing, as pictured in Figure \ref{fig:gilles}. As director, Gilles was responsible for advising the university to order its first computer and so in 1958, the DEUCE became the first electric computer at a Scottish university. In addition to holding an important place in the history of Computing Science, the DEUCE is also significant in recent Scottish academic history.
+Among the universities that installed a DEUCE was the University of Glasgow \citep{Glasgow60}. In 1957, the university established Scotland's first computing lab and chose Dr. Dennis Gilles as its initial Director of Computing, as pictured in Figure \ref{fig:gilles}. As director, Gilles was responsible for advising the university to order its first computer and so in 1958, the DEUCE became the first electric computer at a Scottish university. In addition to holding an important place in the history of Computing Science, the DEUCE is also significant in Scottish academic history.
 
 \begin{figure}[b]
 	\centering
 	\includegraphics[width=0.7\linewidth]{images/gilles}
-	\caption{DEUCE operator Anne Low with Dr. Dennis Gilles, initial Director of Computing at the University of Glasgow, c. 1957. \citep{DelayLine19}}
+	\caption{DEUCE operator Anne Low with Dr. Dennis Gilles, initial Director of Computing at the University of Glasgow, c. 1958. \citep{DelayLine19}}
 	\label{fig:gilles}
 \end{figure}
 
@@ -105,7 +105,7 @@ However, in spite of the DEUCE's importance as an early electric computer, there
 \end{figure}
 
 
-In modern times, it would be impractical to recreate the DEUCE physically. With the DEUCE drawing around 9kW of power and having a clock speed of 1MHz \citep{Glasgow60}, it is a highly inefficient system. Furthermore, its use of mercury delay lines would be dangerous given the potential health problems associated with exposure to mercury \citep{Gao17}. Therefore, an alternative way of recreating the DEUCE in modern times would be through emulation. According to \citet{Nair05}, emulation is "the process of implementing the interface and functionality of one system or subsystem on a system or subsystem having a different interface and functionality." The creation of a DEUCE emulator would be a modern, efficient and convenient way for the DEUCE to be remade and would solve the problem of the DEUCE being widely unavailable to people.
+In modern times, it would be impractical to recreate the DEUCE physically. With the DEUCE drawing around 9kW of power and having a clock speed of 1MHz \citep{Glasgow60}, it is a highly inefficient system by today's standards. Furthermore, its use of mercury delay lines would be dangerous given the potential health problems associated with exposure to mercury \citep{Gao17}. Therefore, an alternative way of recreating the DEUCE in modern times would be through emulation. According to \citet{Nair05}, emulation is "the process of implementing the interface and functionality of one system or subsystem on a system or subsystem having a different interface and functionality." The creation of a DEUCE emulator would be a modern, efficient and convenient way for the DEUCE to be remade and would solve the problem of the DEUCE being widely unavailable to people.
 
 \section{Aims}
 
@@ -119,7 +119,7 @@ The purpose of this chapter was to introduce they key motivations behind the pro
 	\item Chapter 2 will examine the background research carried out on how the DEUCE functioned. It will also examine similar early computer emulators and look into what made these emulators examples of good or bad emulators.
 	\item Chapter 3 will examine the requirements gathering process for the emulator and the choices behind the target platform chosen for the project.
 	\item Chapter 4 will examine the initial design choices made for the emulator and the decisions which informed the design of both the graphical and system design of the computer.
-	\item Chapter 5 will discuss the implementation process of the project and how the frontend and backend of the project was implemented.
+	\item Chapter 5 will discuss the implementation process of the project and how the front-end and back-end of the emulator were implemented.
 	\item Chapter 6 will examine how the emulator was evaluated against the original DEUCE, to discover how successful it was in emulating its behaviour.
 	\item Chapter 7 will reflect on possible future steps for the project and what could have been improved about the emulator. 
 \end{itemize}
@@ -128,7 +128,7 @@ The purpose of this chapter was to introduce they key motivations behind the pro
 \chapter{Background}
 This chapter discusses background research carried out on the DEUCE and on the creation of emulators. Research into both of these topics was necessary to fully understand how to create a DEUCE emulator. Using the research undertaken in this chapter, it was easier to make informed decisions later in the software development process for the DEUCE emulator.
 
-\section{Learning how the DEUCE functions}
+\section{Learning How the DEUCE Functions}
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.5\linewidth]{images/deuce-arch.jpg} 
@@ -136,7 +136,7 @@ This chapter discusses background research carried out on the DEUCE and on the c
 	\label{fig:arch}
 \end{figure}
 
-Firstly, it was important to learn how the DEUCE functioned as a computer. The architecture of the DEUCE is shown in Figure \ref{fig:arch}. As an early computer, it is extremely different to modern computers in several ways. For example, for input, the instructions read in by the DEUCE were essentially a series of move instructions from a memory source to a memory destination. Each instruction was a 32-bit binary word \citep{Weth10}. Instructions could be read in either via a card reader, which read in lines of instructions on special punch cards, or through the Input Dynamiciser, a special row of switches which allowed for single word input. Several special source and memory locations were used for special functions, such as arithmetic functions, discrimination functions etc., and through using these special memory locations, the computer could be coded to run programs.
+Firstly, it was important to learn how the DEUCE functioned as a computer to be able to recreate it as an emulator. The architecture of the DEUCE is shown in Figure \ref{fig:arch}. As an early computer, it is extremely different to modern computers in several ways. For example, for input, the instructions read in by the DEUCE were essentially a series of move instructions from a memory source to a memory destination. Each instruction was a 32-bit binary word \citep{Weth10}. Instructions could be read in either via a card reader, which read in lines of instructions on special punch cards, or through the Input Dynamiciser, a special row of switches which allowed for single word input. Several special source and memory locations were used for special functions, such as arithmetic functions, discrimination functions etc., and through using these special memory locations, the computer could be coded to run programs.
 
 The DEUCE stored instructions in delay lines and registers. It consisted of:
 \begin{itemize}
@@ -145,11 +145,11 @@ The DEUCE stored instructions in delay lines and registers. It consisted of:
 	\item 3 Double Store registers, each storing 2 words.
 	\item 2 Quadruple Store registers, each storing 4 words.
 \end{itemize}	
-For output, the DEUCE could display information through the Output Staticiser, which was a row of lights that could display a single 32-bit word, or through a screen which could display a matrix of bits.
+For output, the DEUCE could display information through the Output Staticiser, which was a row of lights that could display a single 32-bit word, or through two monitors which could display a matrix of bits.
 
 The complex mechanics of the DEUCE meant that the architecture of the computer had to be studied carefully in order to fully understand how to emulate its behaviour.
 
-\section{Comparison of early computer emulators}
+\section{Comparison of Early Computer Emulators}
 To gain a better understanding of how early computers worked, several emulators of other early computers were researched. This gave good insight into how similar early computers functioned and allowed for the exploration of the design choices behind these emulators.
 
 \subsection{Pilot ACE Emulator} 
@@ -206,23 +206,23 @@ The Manchester Baby was another early computer, which has its functionality desc
 
 The control of the Manchester Baby contains two values: the control instruction (CI) and the present instruction (PI). The CI contains the line number of the instruction executed previously. The PI contains the line representing the instruction currently being executed. Input can also be controlled using the switches on the front panel. Output can be displayed through the monitor above the control panel.
 
-Regarding this emulator of the Manchester Baby, the creator chose to make it photo realistic, so it resembles the interface of the original Manchester Baby. While this is a faithful recreation, the interface feels slightly more intimidating to use than the other emulators used so far. For this reason, it would probably be better to recreate the DEUCE using a cleaner interface rather than faithfully restoring the interface as above.
+Regarding this emulator of the Manchester Baby, the creator chose to make it photo realistic, so it resembles the interface of the original Manchester Baby. While this is a faithful recreation, the interface feels slightly more intimidating to use than the other emulators used so far. For this reason, it would be better to recreate the DEUCE using a more user friendly interface, rather than faithfully restoring the interface as above.
 The toolbar of this emulator provides control so the user can load different example programs and view the different parts of the computer, such as the store, the control, the accumulator and the disassembler. The examples tab is a useful way of loading in new programs easily so new users can quickly learn how to use the machine. It would be beneficial to replicate a feature such as this in a DEUCE emulator.
 
 \section{Summary}
-In carrying out background research, this allowed for the discovery of how the DEUCE functioned compared to modern computers and what makes for a good emulator of an early computer. Overall, the design of the DEUCE emulator for this project would be similar to the Pilot ACE emulator, as the two original computers shared much of the same design. However, all of the emulators researched require installation on a Windows PC, which limits the number of people who can access them. A better solution for a modern emulator would be to therefore make the emulator available to as many people as possible. Using this research, this also allowed for the creation of formal requirements as specified in Chapter 3.
+In carrying out background research, this allowed for the discovery of how the DEUCE functioned compared to modern computers and what makes for a good emulator of an early computer. Overall, the design of the DEUCE emulator for this project would be similar to the Pilot ACE emulator shown in Figure \ref{fig:ace-emu}, as the two original computers shared much of the same design. One negative aspect of all of the emulators researched was that they all require installation on a Windows PC, which limits the number of people who can access them. A better solution for a modern emulator would be to therefore make the emulator available on as many devices as possible. Using this research, formal requirements were created for the project, as specified in Chapter 3.
 
 %==================================================================================================================================
 \chapter{Analysis/Requirements}
 This chapter examines the process of analysing how to create the DEUCE emulator. The scope of the project is discussed, as well as the requirements gathered to create the emulator.
 
-\section{Platform selection}
-The original title assigned to this project was "Emulating Glasgow's First Computer on your Phone", but after considering several factors concerning the feasibility of creating a mobile emulator, it was agreed instead to make a web application. Firstly, it would have been extremely difficult to recreate a faithful DEUCE emulator on mobile devices given the limitations of mobile device screen sizes. For example, the DEUCE's Input Dynamisciser was a row of 32 switches, so trying to create a good interface for this on a mobile device would have been beyond the scope of this project.
+\section{Platform Selection}
+The original title assigned to this project was "Emulating Glasgow's First Computer on your Phone", but after considering several factors concerning the feasibility of creating a mobile emulator, it was agreed to instead make a web application. Firstly, it would have been extremely difficult to recreate a faithful DEUCE emulator on mobile devices given the limitations of mobile screen sizes. For example, the DEUCE's Input Dynamisciser was a row of 32 switches, so trying to create a good interface for this on a mobile device would have been beyond the scope of this project.
 
 Furthermore, creating this emulator as a web application is a modern solution to making the DEUCE accessible to a wide number of people. By hosting the emulator on a website, users can access it through their web browser on any device, including desktop or mobile. Therefore, the decision to change the scope of the project early on was important in order to recreate the DEUCE as faithfully as possible.
 
 \section{Requirements Gathering}
-Requirements elicitation was an important early step in the Analysis stage of the project. This helped to define what could feasibly be completed within the scope and time frame of the project. Initial general requirements were firstly created. They are as follows:
+Requirements elicitation was an important early step in the Analysis stage of the project. This helped to define what could feasibly be completed within the scope and time frame of the project. Initial general requirements were created at the beginning of the project. They were as follows:
 \begin{enumerate}
 	\item Replicate physical features of the DEUCE, such as delay lines, card reader etc., within a modern software solution.
 	\item Have a graphical user interface resembling that of the original DEUCE
@@ -302,7 +302,7 @@ The functional requirements of the project define what features DEUCE emulator s
 	\item A subroutine library. The original DEUCE came with a large library of subroutines to be used by DEUCE programmers but this would be too much to implement within the time frame of the project.
 \end{enumerate}
 \subsection{Non-functional Requirements}
-The non-functional requirements of the project describe how the emulator should work, rather than describing what the emulator will do. 
+The non-functional requirements of the project describe how the emulator should work, rather than describing what the emulator will do. They are as follows:
 \begin{enumerate}
 	\item The emulator should be easy enough to understand how to operate for those familiar with the DEUCE.
 	\item It should be intuitive so that new users can learn how to operate a DEUCE.
@@ -316,16 +316,16 @@ This chapter gives an overview of the steps taken during the Analysis stage of t
 
 %==================================================================================================================================
 \chapter{Design}
-This chapter examines the design of the DEUCE emulator. The design of the emulator can broadly be split into two parts: the system architecture and the user interface. The design of the system architecture is concerned with the logical design of the components which make up the computer, while the user interface design examines the graphical aspect of the emulator and how to present it to users.
+This chapter examines the design of the DEUCE emulator as a web application. The design of the emulator can broadly be split into two parts: the system architecture and the user interface. The design of the system architecture is concerned with the logical design of the components which make up the computer, while the user interface design examines the graphical aspects of the emulator and how to present them to users.
 \section{System Architecture}
 Recreating the system architecture of the DEUCE entirely within software was an important step in the design process. With much of the system architecture of the original DEUCE being physical, it was necessary to consider abstract alternatives to how the system could be imitated entirely within software. The main design concepts concerning the DEUCE emulator are detailed within this section.
 
 \subsection{Memory Storage}
 The creation of the memory storage of the DEUCE emulator, as shown in Figure \ref{fig:memory-real} presented several design questions at an early stage. Firstly, the DEUCE had two levels of main memory: delay lines and registers. Access to each of these levels was different as the delay line used clock pulses to access data, whereas for Temporary Stores, access was instant. Delay lines could also hold a vast amount of words compared to registers. Furthermore, within the registers themselves, there were varying sizes between Temporary Stores, Double Stores and Quadruple Stores. Therefore, a solution was needed to represent these different levels of memory entirely within software.
 
-An initial design solution to this problem was to use a dictionary data structure to hold each type of storage. With keys for each type of storage, this would allow a way of accessing each level of memory entirely within software. For every key, the value pair would be an array holding the number of words each type of storage could hold. For example, keys "DL1" to "DL12" would represent the 12 Delay Lines of the DEUCE and hold an array of 32 words, while "TS13" being Temporary Store 13 could hold 1 word.
+An initial design solution to this problem was to use a dictionary data structure to hold each type of storage. With keys for each type of storage, this would allow a way of accessing each level of memory entirely within software. For every key, the value pair would be an array holding the number of words each type of storage could hold. For example, keys "DL1" to "DL12" would represent the 12 Delay Lines of the DEUCE and hold an array of 32 words each, while "TS13", being Temporary Store 13, could hold 1 word.
 
-Another proposed solution to this was to simply store all levels of memory within one array of "Memory" objects. Each memory object could hold a given number of words and so could be used to represent each type of storage. The index of each type of storage would have to be tracked rather than named but given the labels of each type of storage in the architecture diagram of the original DEUCE (DL1, TS13, QS17 etc.) seen in Figure \ref{fig:arch}, it would not be difficult to do so. The number of each type of storage from the labels could be simply used as indexes within the array.
+Another proposed solution to this was to simply store all levels of memory within one array of "Memory" objects. Each memory object could hold a given number of words and so could be used to represent each type of storage. The index of each type of storage would have to be tracked rather than named but given the labels of each type of storage in the architecture diagram of the original DEUCE are already numbered (DL1, TS13, QS17 etc.), as seen in Figure \ref{fig:arch}, it would not be difficult to do so. The number of each type of storage from the labels could be simply used as indexes within the array.
 
 For this reason, it was decided that an array would be used over a dictionary. Ultimately, using a dictionary would overcomplicate the design of memory as software and an array would be a more efficient and effective way of keeping track of memory.
 \subsection{Delay Line Architecture}
@@ -375,14 +375,14 @@ For input via the Input Dynamiciser switches, the current state of the Input Dyn
 	
 Regarding output, the DEUCE should display output on the Output Staticiser lights. These lights display the output of the last instruction executed as a 32-bit reverse binary word. The original DEUCE could also write output to punched cards or to the system's monitor. These features may not be implemented in this version of the DEUCE but it was important to show that these features were part of the original DEUCE architecture.
 
-From using this diagram, the flow of program execution in the DEUCE can be seen. It identifies the key components of the DEUCE based on the functional requirements from Chapter 3.
+From using this diagram, the flow of program execution in the DEUCE can be seen. It identifies the key components of the DEUCE based on the functional requirements from Chapter 3. \\ \\ \\ \\
 	
 \section{User Interface}
 One of the key differences between the interface of the DEUCE emulator and the original DEUCE interface is the lack of hardware. Given that this project would be written entirely as software, one of they key challenges would be replicating the physical features of the DEUCE within software and representing them correctly to the user. To solve this problem, visual metaphors would need to be used to allow the user to feel as though they were using the original DEUCE.
 	
 The DEUCE is comprised of many switches and lights. It also features a dial to set the number of single shots to be executed in succession. While it is not possible to physically recreate these components, it is important to give the user correct feedback when operating them. To solve this challenge, it was decided that switches and lights would need to be animated properly to give the user good feedback on their actions.
 	
-Another large difference between a software-only DEUCE and a real DEUCE is the absence of a card reader and card punch. In the original DEUCE, a Hollerith card reader was used to read in pre-written programs and a card punch was used to physically print output on card. To replicate a card reader in a web application, a good solution would be to provide a file upload button and have users browse files to mimic inserting a program into the DEUCE. A better solution would be to use a web framework that supports "drag and drop" features, which would allow a user to "drop" a card into the card reader. 
+Another large difference between a software-only DEUCE and a real DEUCE is the absence of a card reader and card punch. In the original DEUCE, a Hollerith card reader was used to read in pre-written programs and a card punch was used to physically print output on card. To replicate a card reader in a web application, a good solution would be to provide a file upload button and have users browse files to mimic inserting a program into the DEUCE. Another good solution would be to use a web framework that supports "drag and drop" features, which would allow a user to "drop" a card into the card reader. 
 	
 For these reasons, it was necessary to select a web framework that would support these graphical needs. The selection of an appropriate web framework is later discussed in Chapter 5.
 
@@ -399,7 +399,7 @@ Many different development tools were used to aid in the creation of the DEUCE e
 \subsection{Web Framework}
 The emulator was written as a web application because hosting it on the internet would allow a large number of people to access it from almost anywhere in the world. To make the emulator a suitable, modern web application, it was necessary to choose a web framework in which to create the project. Web frameworks allow for "the producibility of mature web applications with a wide range of possible features and desktop-like user interaction" \citep{kersten10}. With this in mind, three of the most popular JavaScript based web frameworks were considered to produce the DEUCE emulator: Angular \citep{angular19}, ReactJS \citep{react19} and Vue.js \citep{vue19}. JavaScript is widely used by many web applications \citep{javascript15} and would therefore be an appropriate choice of language to create this web application. Ultimately, it was decided that Angular would be chosen over the other two frameworks.
 
-Angular is a web framework created by Google that is used for building mobile and desktop web applications \citep{angular19}. While the original version of Angular was titled AngularJS and used JavaScript, Angular in its current form uses TypeScript. However, it can still be considered JavaScript based as TypeScript shares many similarities with JavaScript and is transpiled into JavaScript when Angular applications are run in web browsers \citep{Clow18}. One of the key advantages of TypeScript over JavaScript in this project is that it is more similar to an object-oriented language such as Java than JavaScript, as it provides features such as strong typing, classes and interfaces \citep{typescript18}. An object-oriented approach, as defined by \citet{chambers14}, would be highly suitable to building this emulator as it would be a useful way to structure both the memory of the DEUCE and the graphical components for the user interface. Therefore, this gave Angular a large advantage over ReactJS and Vue.js as a choice of framework for this project.
+Angular is a web framework created by Google that is used for building mobile and desktop web applications \citep{angular19}. While the original version of Angular was titled AngularJS and used JavaScript, Angular in its current form uses TypeScript. However, it can still be considered JavaScript based as TypeScript shares many similarities with JavaScript and is transpiled into JavaScript when Angular applications are run in web browsers \citep{Clow18}. One of the key advantages of TypeScript over JavaScript in this project is that it is more similar to an object-oriented language, such as Java, than JavaScript, as it provides features such as strong typing, classes and interfaces \citep{typescript18}. An object-oriented approach, as defined by \citet{chambers14}, would be highly suitable to building this emulator as it would be a useful way to structure both the memory of the DEUCE and the graphical components for the user interface. Therefore, this gave Angular a large advantage over ReactJS and Vue.js as a choice of framework for this project.
 
 Another advantage of Angular is that it features a large library of learning resources compared to other web frameworks. Having been built and maintained by Google, there were a vast number of tutorials and development guides compared to frameworks that are still growing, such as Vue.js \citep{vue19}. For this reason, this gave Angular another advantage as choice of web framework for this project.
 
@@ -412,9 +412,9 @@ Using version control was an essential step in the implementation process, as ve
  \url{https://gerardward3.github.io/level4-project/}
  
 \subsection{Integrated Development Environment}
-To help with writing and detecting bugs in code, an Integrated Development Environment (IDE) was necessary to use. According to \citet{ide15}, IDEs "improve developer productivity by assisting with tasks such as navigating among classes and methods, continuous compilation, code refactoring, automated testing, and integrated debugging". As this project used Angular as a framework, much of the code was written in TypeScript. For this reason, Visual Studio Code was chosen as an IDE, as "it was written by the same people who wrote TypeScript, so we know it will work well with it" \citep{visualstudio18}. It also "includes support for debugging, embedded Git control, syntax highlighting, intelligent code completion, snippets, and code refactoring" \citep{visualstudio18}. For these reasons, Visual Studio was a sensible choice as an Integrated Development Environment.
+To help with writing and detecting bugs in code, an Integrated Development Environment (IDE) was necessary to use. According to \citet{ide15}, IDEs "improve developer productivity by assisting with tasks such as navigating among classes and methods, continuous compilation, code refactoring, automated testing, and integrated debugging". As this project used Angular as a framework, much of the code was written in TypeScript. For this reason, Visual Studio Code was chosen as an IDE, as "it was written by the same people who wrote TypeScript, so we know it will work well with it" \citep{visualstudio18}. It also "includes support for debugging, embedded Git control, syntax highlighting, intelligent code completion, snippets, and code refactoring" \citep{visualstudio18}. For these reasons, Visual Studio Code was a sensible choice as an Integrated Development Environment.
 
-\section{Front-end development}
+\section{Front-end Development}
 With the code broadly being split into "front-end" and "back-end", front-end development was started before back-end development. For the purpose of this project, "front-end" development will refer to the creation of the graphical user interface of the emulator, while "back-end" will refer to the underlying logic and behaviour of the emulator. The purpose of starting front-end development before back-end was to design a user interface that a user could load in their web browser and then make changes to each graphical component as required. 
 
 \begin{figure}[h]
@@ -425,14 +425,14 @@ With the code broadly being split into "front-end" and "back-end", front-end dev
 \end{figure}
 
 \subsection{Graphics}
-The images used in the console, as shown in Figure \ref{fig:deuce-emu} are taken from an open source library of clip art images \citep{openclipart}, under the Creative Commons Zero 1.0 Public Domain License \citep{creativecommons}. The lights and switches both have two states and show different images indicating which state they are in. This is designed to give the user feedback from their actions. The dial image is not interactive - it is there only to graphically recreate the dial on the original DEUCE panel.
+The images used in the console, as shown in Figure \ref{fig:deuce-emu}, are taken from an open source library of clip art images \citep{openclipart}, under the Creative Commons Zero 1.0 Public Domain License \citep{creativecommons}. The lights and switches both have two states and show different images indicating which state they are in. This is designed to give the user feedback from their actions. The dial image is not interactive - it is there only to graphically recreate the dial on the original DEUCE panel.
 
 \subsection{HTML and CSS}
-The GUI of the emulator was written using HTML and CSS. For each type of graphical component, an Angular component was generated, providing an HTML, CSS and TypeScript file. The HTML of the overall panel features all graphical components, split up and organised using the Flexible Box Module, or Flexbox. Flexbox allows for powerful alignment controls over HTML elements using CSS. 
+The GUI of the emulator was written using HTML and CSS. For each type of graphical component, an Angular component was generated, each providing an HTML, CSS and TypeScript file. The HTML of the overall panel features all graphical components, split up and organised using the Flexible Box Module, or Flexbox. Flexbox allows for "powerful alignment controls" over HTML elements using CSS \citep{Mozilla19}.
 
 For each graphical component, an image path and an ID are given. The image path defines which image is to be displayed, and interacts with the TypeScript file of the component to retrieve this image. The ID is used to identify the place of the graphical component on the panel.
 
-Switch components also feature a \texttt{click()} function in their HTML. This function listens for when a switch has been clicked and then performs an action based on the ID of the switch. For example, the when an Input Dynamiciser switch has been clicked, this is detected and in the TypeScript file for this component, its respective light is switched on.
+Switch components also feature a \texttt{click()} function in their HTML. This function listens for when a switch has been clicked and then performs an action based on the ID of the switch. For example, the when an Input Dynamiciser switch has been clicked, this is detected and using the TypeScript file for this component, its respective light is switched on.
 
 Overall, it was important to use good HTML and CSS methods to faithfully recreate the front panel of the DEUCE. While the HTML panel of the emulator is complex due to the number of graphical components, it was important to define each of these individual graphical components with their own ID so the correct functionality could be performed. It was also important to use Flexbox to recreate the same layout as the original DEUCE.
 
@@ -457,17 +457,17 @@ The back-end development of the emulator was then carried out after a graphical 
 	\end{subfigure}
 	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
 	%(or a blank line to force the subfigure onto a new line)    
-	\caption{Excerpts from codebase of project. These show how an example of a DEUCE register is created in the emulator.}
+	\caption{Excerpts from codebase of project. These show how a QuadStore object is created through inheriting the Register class in the emulator.}
 	\label{fig:mem-classes}
 \end{figure}
 The memory of the DEUCE emulator was created using an object-oriented approach. Firstly, a \texttt{Register} class was created, which stores an array of TypeScript numbers of a given size in the "storage" field. Each number in this array is decimal and is then converted to a 32-bit reverse binary number when it is retrieved for use by the emulator later on. 
 
-The \texttt{Register} class is then inherited by classes of the various levels of memory used in the DEUCE emulator: \texttt{TemporaryStore}, \texttt{DoubleStore}, \texttt{QuadStore} and \texttt{DelayLine}. Each of these classes are essentially \texttt{Register} classes with different sizes of storage. The size of the storage is determined by the value given in the super constructor of each class. For example, a \texttt{DelayLine} class gives a parameter of 32 in the super constructor while a \texttt{QuadStore} gives a size of 4 in the super constructor. This value represents the number of words each level of storage could hold in the DEUCE.
+The \texttt{Register} class is then inherited by classes of the various levels of memory used in the DEUCE emulator: \texttt{TemporaryStore}, \texttt{DoubleStore}, \texttt{QuadStore} and \texttt{DelayLine}. Each of these classes are essentially \texttt{Register} classes with different sizes of storage. The size of the storage is determined by the value given in the \texttt{super()} constructor of each class. For example, a \texttt{DelayLine} class gives a parameter of 32 in the \texttt{super()} constructor while a \texttt{QuadStore} gives a size of 4 in the \texttt{super()} constructor. This value represents the number of words each level of storage could hold in the DEUCE.
 
 These objects then comprise a \texttt{Memory} class, which stores all levels of memory in an array and is constructed when the application is initially loaded. Index 0 of this array is set to null, as the DEUCE did not store data in memory address 0. Indexes 1 to 12 are then initialised with \texttt{DelayLine} objects, indexes 13 to 16 with \texttt{TemporaryStore} objects, indexes 17 to 18 with \texttt{QuadStore} objects and indexes 19 to 21 with \texttt{DoubleStore} objects. Using this array, the various forms of DEUCE storage can be accessed.
 
 \subsection{Instruction Processing}
-The bulk of the logic for instruction processing can be found in the \texttt{panel.component.ts} file. The \texttt{switchClicked()} function listens for when a switch is clicked on the panel of the emulator. When it detects that a switch has been clicked, it checks for the type of switch that was clicked. For example, if the switch has a corresponding light on the panel, the light which corresponds to this switch is switched on. 
+The bulk of the logic for instruction processing in the emulator can be found in the\\ \texttt{panel.component.ts} file. The \texttt{switchClicked()} function listens for when a switch is clicked on the panel of the emulator. When it detects that a switch has been clicked, it checks for the type of switch that was clicked. For example, if the switch has a corresponding light on the panel, the light which corresponds to this switch is switched on. 
 
 Instructions given in the Input Dynamiciser are processed when it is detected that the Single Shot switch has been clicked. When this happens, the instruction is converted into a binary array of length 32 through the \texttt{readInstructionFromPanel()} function. The program then checks if it is reading in an instruction or a data value, i.e. if the previous instruction gave a Source value of 0. When it is determined that an instruction was given, the instruction is then broken down into various fields. This functionality is seen in Figure \ref{fig:process-instruction}.
 
@@ -481,11 +481,11 @@ Instructions given in the Input Dynamiciser are processed when it is detected th
 
 After being separated into individual fields, the instruction is then checked for any Source or Destination addresses that can perform special functions, such as Source 0 for a data value to be read from the Input Dynamiciser, Destination 25 for addition etc. Once these are checked, the memory transfer is performed and the Go bit is checked to discover if program execution should or should not be halted. After an instruction has been processed, the emulator then either waits on another switch to be clicked or continues with the next instruction specified through the NIS and Timing fields.
 
-\subsection{Minor and major cycling}
-While the original DEUCE used minor and major cycling to perform memory accesses to delay lines, this functionality was not captured in this emulator. The data stored in the mercury delay lines of the original DEUCE was constantly moving inside the tanks and data could be encoded through acoustic pulses in memory. To access this data, minor and major cycles were used to measure where in memory certain words were being held. An attempt at recreating this behaviour was started through the creation of a timer in TypeScript. The \texttt{dlIndex} field in \texttt{panel.component.ts} increments by 1 every half second, used to represent a minor cycle, and is then divided by 32, with its remainder being used to represent 32 minor cycles. This essentially acts as a pointer to an array and could be used in a future version of the emulator to recreate the behaviour of minor and major cycling.
+\subsection{Minor and Major Cycling}
+While the original DEUCE used minor and major cycling to perform memory accesses to delay lines, this functionality was not fully captured in this emulator. The data stored in the mercury delay lines of the original DEUCE was constantly moving inside the tanks and data could be encoded through acoustic pulses in memory. To access this data, minor and major cycles were used to measure where in memory certain words were being held. An attempt at recreating this behaviour was started through the creation of a timer in TypeScript. The \texttt{dlIndex} field in \texttt{panel.component.ts} increments by 1 every half second, used to represent a minor cycle, and is then divided by 32, with its remainder being used to represent 32 minor cycles. This essentially acts as a pointer to an array and could be used in a future version of the emulator to recreate the behaviour of minor and major cycling.
 
 \subsection{Initial Input}
-While a card reader could not be implemented in this version of the emulator, a program was hard-coded into the emulator to show the functionality of how a pre-written program could be read into the DEUCE and processed. This program lights up the Output Staticiser lights from left to right from 1 to 32. The purpose of this program is to show the functionality of the NIS and Timing fields during instruction processing. Each of these fields is used to specify where in memory the next instruction is being held, so the program can continue without halting execution. The Go bit is also used to allow execution of the program to continue.
+While a card reader could not be implemented in this version of the emulator, a program was hard-coded into the emulator to show the functionality of how a pre-written program could be read into the DEUCE and processed. This program can be executed by clicking the Initial Input switch. The program lights up the Output Staticiser lights from left to right from 1 to 32. The purpose of this program is to show the functionality of the NIS and Timing fields during instruction processing. Each of these fields is used to specify where in memory the next instruction is being held, so the program execute a series of instructions in succession. The Go bit is also used to allow execution of the program to continue.
 
 \section{Summary}
 This chapter examined the technical implementation of the DEUCE emulator and the tools used to create it. Through this process, a working emulator was made and deployed. The version featured much of the functionality of the original DEUCE and its effectiveness as an emulator would go on to be evaluated, as seen in Chapter 6.
@@ -496,8 +496,8 @@ After the implementation of the project was completed, the emulator was evaluate
 
 In addition, a user evaluation was carried out to gain user feedback about the emulator. The evaluation was carried out by a total of 12 participants, with half coming from a Computing Science background and half coming from a non-Computing Science background. The mix of backgrounds was chosen to evaluate if there is a difference between users who would be more likely to be proficient at using the emulator than users who would be less likely. The purpose of the overall evaluation was to determine how successful the DEUCE emulator was in being a faithful recreation of the DEUCE and to discover if it had the potential to be used as an educational tool for learning more about the DEUCE. The results of this feedback can be seen in Appendix B.
 
-\section{Special address evaluation}
-With the number of addresses used in the DEUCE for special functionality, it was important to test the special addresses implemented in the emulator to make sure they emulated the behaviour of the original. These addresses were specified in the \textit{Must Have Functional Requirements} \textbf{9.a)-m)}. The results of testing the special addresses are seen in Appendix A, with Table \ref{tab:source-instr} showing the special Source addresses and Table \ref{tab:dest-instr} showing the special Destination addresses. Every instruction that was tested successfully performed the correct function it should have, so all \textit{Must Have Functional Requirements} \textbf{9.a)-m)} were correctly implemented. These instructions also made use of an instruction decoder and single shot switch, fulfilling \textit{Must Have Functional Requirements} \textbf{6} and \textbf{7} respectively.
+\section{Special Address Evaluation}
+With the number of addresses used in the DEUCE for special functionality, it was important to test the special addresses implemented in the emulator to make sure they emulated the behaviour of the original. These addresses were specified in the \textit{Must Have Functional Requirements} \textbf{9.a)-m)}. The results of testing the special address tests are seen in Appendix A, with Table \ref{tab:source-instr} showing the special Source address tests and Table \ref{tab:dest-instr} showing the special Destination address tests. Every instruction that was tested successfully performed the correct function it should have, so all \textit{Must Have Functional Requirements} \textbf{9.a)-m)} were correctly implemented. These instructions also made use of an instruction decoder and single shot switch, fulfilling \textit{Must Have Functional Requirements} \textbf{6} and \textbf{7} respectively.
 
 Several of the addresses tested only required simplistic instructions to test their functionality. Requirements \textbf{9.d)-9.h)} all followed the same program logic of placing a number in a destination address and displaying the output of the destination address. \textbf{9.m)} was evaluated in every test as it was required to display output, and functioned correctly each time. \textbf{9.a)} was also tested with a simple set of instructions, taking in input and displaying it on the Output Staticiser lights. All of these tests were straightforward and proved the functionality of their respective requirements.
 
@@ -505,11 +505,11 @@ Requirements \textbf{9.b)} and \textbf{9.c)} both followed the same instructions
 
 Testing requirements \textbf{9.k)} and \textbf{9.l)} proved to slightly more tricky. Discrimination in the DEUCE worked by executing one of two adjacent instructions in a delay line tank, so this was tested by firstly placing two different instructions in adjacent locations in Delay Line 3. The first instruction would display $ 2^{16} $ on the Output Staticiser, and the second would display $ 2^{31} $. The data value 1 was then sent to both Destination 27 and 28 to test \textbf{9.k)} and \textbf{9.l)} respectively. The correct output was displayed for both, proving that discrimination worked for both positive and negative numbers, and zero and non-zero numbers.
 
-\section{Memory structure evaluation}
+\section{Memory Structure Evaluation}
 
 \begin{figure}[h!]
 	\includegraphics[width=0.9\textwidth]{images/memory-emu}
-	\caption{Memory structure of DEUCE emulator shown in web browser console during development. Data structure used is an array of 22 Object arrays of varying sizes according to type of storage.}
+	\caption{Memory structure of DEUCE emulator shown in web browser console during development. Data structure used is an array of 22 Object arrays of varying sizes according to type of storage. The sizes indicate the type of class of each Object (DelayLine, TemporaryStore, DoubleStore or QuadrupleStore).}
 	\label{fig:memory-emu}
 \end{figure}
 
@@ -520,9 +520,9 @@ To test the memory structure of the DEUCE emulator, the Memory object created wa
 One part of memory that was not fully implemented was using minor and major cycling to access delay line storage. While a timer was created to measure access times, in addition to the simulation of cycling in the example program hard-coded into the emulator and executed using Initial Input, this feature was not fully integrated into the emulator. Therefore, \textit{Must Have Functional Requirement} \textbf{5} was attempted but not fully completed.
 
 
-\section{User interface evaluation}
+\section{User Interface Evaluation}
 
-\begin{figure}[!t]
+\begin{figure}[!h]
 	\centering
 	\begin{subfigure}[t]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{images/chart-1}
@@ -595,7 +595,7 @@ Another important feature of the emulator that had to be evaluated was how easy 
 
 A key inclusion that helped to make the application more usable was the creation of a user guide. While this was classified as \textit{Could Have Functional Requirement} \textbf{1}, making the user guide a lower priority requirement proved to be an error of judgement. Without the guide, users would have struggled to understand how to use the emulator, with 91.7\% of users being previously unfamiliar with the DEUCE, shown in Table \ref{tab:section-2}. This also affected \textit{Non-functional Requirements} \textbf{1} and \textbf{2}, as it is difficult to intuitively understand the DEUCE emulator without knowledge of the original DEUCE or with the help of a guide. This proved that certain requirements should have been reassessed to give them the correct priorities to aid usability.
 
-In terms of the emulator being used as an educational tool to help teach people about early computers, many users agreed that it could be used in such a way, as shown in Figure \ref{fig:eval-usability}. 91.7\% of users felt that they had a better understanding of how the DEUCE functioned after having used the emulator. In addition, 100\% of users said they would use the emulator as a tool to aid in their learning, if they were studying about early computers. Lastly, a slight majority of 58.3\% said they would be interested in learning more about the DEUCE. This strongly indicates that the DEUCE emulator could be used as an educational tool, and so meets \textit{Non-functional Requirement} \textbf{5}. \\ \\ \\ \\ \\ \\ \\ \\
+In terms of the emulator being used as an educational tool to help teach people about early computers, many users agreed that it could be used in such a way, as shown in Figure \ref{fig:eval-usability}. 91.7\% of users felt that they had a better understanding of how the DEUCE functioned after having used the emulator. In addition, 100\% of users said they would use the emulator as a tool to aid their learning if they were studying about early computers. Lastly, a slight majority of 58.3\% said they would be interested in learning more about the DEUCE. This strongly indicates that the DEUCE emulator could be used as an educational tool, and so meets \textit{Non-functional Requirement} \textbf{5}. \\ \\ \\ \\ \\ \\ \\ \\
 
 
 \section{Summary}
@@ -603,7 +603,7 @@ In completing the Evaluation phase of the software development process for this 
 
 %==================================================================================================================================
 \chapter{Conclusion}    
-Overall, the project of "Emulating Glasgow`s First Computer" was a success. By carrying out this project, there now exists a web-based emulator of one of the most significant early commercial computers, which allows people to use a DEUCE and learn how it functions. Unlike many other emulators of early computers, such as the ones researched in Chapter 2, this emulator was also created using a modern web framework, making it a more suitable application for today`s world than many other early computer emulators. After being evaluated by users from both Computing Science and non-Computing Science backgrounds, it was discovered that most people would use this emulator as a way of learning more about early computers. Therefore, its purpose of being used as both an educational tool and a way of preserving the legacy of the DEUCE has been achieved. 
+Overall, the project of "Emulating Glasgow`s First Computer" was a success. By carrying out this project, there now exists a web-based emulator of one of the most significant early commercial computers, which allows people to use a DEUCE and learn how it functions. Unlike many other emulators of early computers, such as the ones researched in Chapter 2, this emulator was also created using a modern web framework, making it a more suitable application for today's world. After being evaluated by users from both Computing Science and non-Computing Science backgrounds, it was discovered that most people would use this emulator as a way of learning more about early computers. Therefore, its purpose of being used as both an educational tool and a way of preserving the legacy of the DEUCE has been achieved. 
 
 In terms of meeting its requirements, while a lot of the key functionality of the DEUCE was recreated in the emulator, some functionality was not captured. This was mostly due to time constraints of the project and the difficulties of recreating some of the more complex aspects of the DEUCE within a modern emulator. Nonetheless, the emulator is still a faithful recreation of the original DEUCE with the functionality it currently has.
 
@@ -629,7 +629,7 @@ As a modern web emulator, it would be beneficial if the project could be adapted
 The emulator is currently a single page web application which features the emulator console by itself. However, the web page could be turned into a better learning hub for the DEUCE by making additional resources available to users while they use the emulator. For example, there could be sections featuring the user guide, photos of the original DEUCE, links to other early computer emulators etc. By making these changes, this application could become one of the best sources for information about early computers publicly available on the internet. 
 
 \section{Reflections}
-From this project, I have learned a lot about several areas of Computing Science and software development. Firstly, I have gained an appreciation for how early computers functioned and how rapidly computers have developed since then. I have also learned an entirely new framework for web applications in Angular, and I could see myself using this framework again in future. Another important skill I have learned is learning how to differentiate between good and bad parts of existing similar software projects and deciding what parts to base my own project on.
+From this project, I have learned a lot about several areas of Computing Science and software development. Firstly, I have gained an appreciation for how early computers functioned and how rapidly computers have developed since then. I have also learned an entirely new framework for web applications in Angular, and I could see myself using this framework again in future. Another important skill I have learned is learning how to differentiate between good and bad parts of existing similar software projects and how to decide what parts to base my own project on.
 
 While I believe the project has been a success, there are still certain things I would do differently for a project like this in future. Some of the functions missing from the emulator could have been captured had the requirements been more frequently re-assessed and if their priorities had been changed. Therefore, this reminded me of the importance of iteration in every step of the software development process. I would have also allocated myself more time for tasks in general, as too much time was taken for several steps and as a result, certain features were missing from the final product.
 
@@ -648,7 +648,7 @@ However, I still believe I have made a successful attempt at creating an emulato
 
 Acceptance testing carried out for \textit{Must Have Functional Requirements} \textbf{9.a)-9.m)}. Test tables \ref{tab:source-instr} and \ref{tab:dest-instr} show what instructions were carried out for each special address in memory to test their functionality.
 
-\begin{table}[h]
+\begin{table}[h!]
 	\caption{Tests carried out against functional requirements 9.a) to 9.h). These requirements concern the special Source addresses of the DEUCE and their functionality.}
 	\label{tab:source-instr}
 	\begin{tabular}{|l|l|l|l|l|l|}
@@ -682,14 +682,14 @@ Acceptance testing carried out for \textit{Must Have Functional Requirements} \t
 \chapter{Ethics checklist for user evaluation}
 
 
-\begin{figure}
+\begin{figure}[h!]
 	\centering
 	\includegraphics{images/consent-1}
 	\caption{Page 1 of University of Glasgow School of Computing Science Ethics checklist.}
 	\label{fig:consent-1}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h!]
 	\centering
 	\includegraphics{images/consent-2}
 	\caption{Page 2 of University of Glasgow School of Computing Science Ethics checklist.}
